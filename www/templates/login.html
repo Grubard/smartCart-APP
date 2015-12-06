@@ -1,0 +1,26 @@
+<ion-view view-title="List">
+  <ion-content>
+    <div class="loginPage">
+
+      <div class="loginBlock formStuff">
+        <form ng-submit="vm.login(user)" class="logIn">
+          <p>Log In to Existing Account</p>
+          <input type="text" ng-model="user.username" placeholder="Username">
+          <input type="password" ng-model="user.password" placeholder="Password">
+          <button class="button">Log In</button>
+        </form>
+
+
+        <button class="button newButton" ng-click="vm.showCreateNew()">New smartCart</button>
+
+        <form ng-submit="vm.signUp(newUser)" class="createAcct">
+          <p>Create User Profile</p>
+          <input type="email" ng-model="newUser.email" placeholder="Email">
+          <input type="text" ng-model="newUser.username" placeholder="Username"> 
+          <input type="password" ng-model="newUser.password" placeholder="Password">
+          <button class="button">Sign Up</button>
+        </form>
+      </div>
+    </div>      
+  </ion-content>
+</ion-view>
