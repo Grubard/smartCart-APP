@@ -1,0 +1,22 @@
+<ion-view view-title="Contact Us">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
+  </ion-nav-buttons>
+  <ion-content has-header="true" padding="true">
+    <h1>Contact Us</h1>
+  </ion-content>
+  <div class="tabs tabs-icon-only">
+    <a class="tab-item disable-user-behavior" title="Pantry" ui-sref="tab.pantry">
+      Pantry<span class="tab-title ng-binding" ng-bind-html="title"></span>
+    </a>
+    <a class="tab-item disable-user-behavior active" title="Home" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="tab.home">
+      Home<span class="tab-title ng-binding" ng-bind-html="title"></span>
+    </a>
+    <a class="tab-item disable-user-behavior" title="List" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="tab.list">
+      List<span class="tab-title ng-binding" ng-bind-html="title"></span>
+    </a>
+  </div>
+</ion-view>

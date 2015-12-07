@@ -11186,5 +11186,12 @@ a.button {
 .pantry {
   border-bottom: none; }
 
+.tabs span {
+  font-size: .5em;
+  margin-left: .5em; }
+
+.button-fullwidth {
+  width: 100%; }
+
 .hide {
   display: none; }

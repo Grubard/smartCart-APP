@@ -44,6 +44,17 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
    border-bottom: none;
 }
 
+.tabs {
+  span {
+    font-size: .5em;
+    margin-left: .5em;
+  }
+}
+
+.button-fullwidth {
+  width: 100%;
+}
+
 .hide {
   display: none;
 }

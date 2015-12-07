@@ -1,13 +1,34 @@
 angular.module('starter.controllers', [])
 
 .controller('UserHomeController', function($scope) {
+  
+})
 
+.controller('AlertController', function($scope, $ionicModal) {
+  var vm = this;
+    // Load the modal from the given template URL
+    $ionicModal.fromTemplateUrl('templates/alert.html', function($ionicModal) {
+      $scope.modal = $ionicModal;
+    }, {
+      // Use our scope for the scope of the modal to keep it simple
+      scope: $scope,
+      // The animation we want to use for the modal entrance
+      animation: 'slide-in-up'
+    });
+})
+
+
+.controller('NavController', function($scope, $ionicSideMenuDelegate) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
 })
 
 .controller('AddUserController', function($state, $http, $cookies) {
   var vm = this;
   vm.addUser= function(user){
     console.log(user);
+    $state.go('tab.home');
   };
 })
 
@@ -50,7 +71,7 @@ angular.module('starter.controllers', [])
 
     
     $http.post(url+'/login', user).then((res)=>{
-
+      console.log(res);
       var expireDate = new Date();
       expireDate.setDate(expireDate.getDate() + 7);
       $cookies.put('auth_token', res.data.user.access_token, {expires: expireDate});

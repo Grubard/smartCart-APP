@@ -1,5 +1,11 @@
 <ion-view view-title="smartCart">
-  <ion-content>
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
+  </ion-nav-buttons>
+  <ion-content has-header="true" padding="true">
     <div class="row">
       <a class="tab-item col col-50 list-tabs pantry" pantry>
         <i class="icon"></i>
@@ -168,3 +174,4 @@
     </div>
   </ion-content>
 </ion-view>
+

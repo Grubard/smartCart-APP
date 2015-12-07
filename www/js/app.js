@@ -45,8 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.views.transition('none');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.home', {
     url: '/home',
     views: {
-      'home': {
+      'tab': {
         templateUrl: 'templates/home.html',
         controller: 'UserHomeController as vm'
       },
@@ -76,7 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.pantry', {
     url: '/pantry',
     views: {
-      'pantry': {
+      'tab': {
         templateUrl: 'templates/pantry.html',
         controller: 'PantryController as vm',
       },
@@ -86,7 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.login', {
     url: '/login',
     views: {
-      'login': {
+      'tab': {
         templateUrl: 'templates/login.html',
         controller: 'LoginController as vm'
       },
@@ -97,7 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.list', {
     url: '/list',
     views: {
-      'list': {
+      'tab': {
         templateUrl: 'templates/list.html',
         controller: 'ListController as vm',
       },
@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.create', {
     url: '/create',
     views: {
-      'create': {
+      'tab': {
         templateUrl: 'templates/create.html',
         controller: 'LoginController as vm',
       },
@@ -117,11 +117,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   .state('tab.add', {
     url: '/adduser',
     views: {
-      'add': {
+      'tab': {
         templateUrl: 'templates/adduser.html',
         controller: 'AddUserController as vm',
       },
     authenticate: true
+    }
+  })
+  .state('tab.account', {
+    url: '/settings',
+    views: {
+      'tab': {
+        templateUrl: 'templates/account.html'
+      },
+    authenticate: false
+    }
+  })
+  .state('tab.contact', {
+    url: '/contact',
+    views: {
+      'tab': {
+        templateUrl: 'templates/contact.html'
+      },
+    authenticate: false
     }
   });
 
