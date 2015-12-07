@@ -4,35 +4,31 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('AddUserController', function($state, $http, $cookies) {
+  var vm = this;
+  vm.addUser= function(user){
+    console.log(user);
+  };
+})
+
 .controller('PantryController', function($scope) {
   
 })
 
-.controller('LoginController', function($scope, SERVER, $http, $cookies, $state) {
+.controller('LoginController', function($scope, SERVER, $http, $cookies, $state, LoginService) {
   var url = SERVER.URL;
-
 
   var vm = this;
 
-  vm.showCreateNew = showCreateNew;
   vm.createSmartCart = createSmartCart;
-
-  function showCreateNew () {
-    $('.logIn').addClass('hidden');
-    $('.createAcct').addClass('shown');
-    $('.newButton').addClass('hidden');
-  }
-
-
 
   vm.signUp = function(newUser){
     $http.post(url+'/signup/', newUser).then((res)=>{
       console.log(res.data);
       $cookies.put('auth_token', res.data.user.access_token);
       $cookies.put('username', res.data.user.username);
+      $state.transitionTo('tab.create');
     });
-    $('.createAcct').addClass('hidden');
-    $('.newSmartCart').addClass('shown');
   };
 
 
@@ -46,10 +42,6 @@ angular.module('starter.controllers', [])
       var id = res.data.house.id;
       $cookies.put('house_id', id, {expires: expireDate}); 
     });
-
-    $('.addOthers').addClass('shown');
-    $('.finishButton').addClass('shown');
-    $('.newSmartCart').addClass('hidden');
   }
 
 

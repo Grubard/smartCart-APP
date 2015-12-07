@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -56,23 +56,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   .state('tab.pantry', {
-      url: '/pantry',
-      views: {
-        'pantry': {
-          templateUrl: 'templates/pantry.html',
-          controller: 'PantryController as vm',
-        }
+    url: '/pantry',
+    views: {
+      'pantry': {
+        templateUrl: 'templates/pantry.html',
+        controller: 'PantryController as vm',
       }
-    })
-    .state('tab.login', {
-      url: '/login',
-      views: {
-        'login': {
-          templateUrl: 'templates/login.html',
-          controller: 'LoginController as vm'
-        }
+    }
+  })
+  .state('tab.login', {
+    url: '/login',
+    views: {
+      'login': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginController as vm'
       }
-    })
+    }
+  })
 
   .state('tab.list', {
     url: '/list',
@@ -80,6 +80,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'list': {
         templateUrl: 'templates/list.html',
         controller: 'ListController as vm',
+      }
+    }
+  })
+  .state('tab.create', {
+    url: '/create',
+    views: {
+      'create': {
+        templateUrl: 'templates/create.html',
+        controller: 'LoginController as vm',
+      }
+    }
+  })
+  .state('tab.add', {
+    url: '/adduser',
+    views: {
+      'add': {
+        templateUrl: 'templates/adduser.html',
+        controller: 'AddUserController as vm',
       }
     }
   });
