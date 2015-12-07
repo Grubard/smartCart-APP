@@ -42,6 +42,21 @@ angular.module('starter.directives', [])
       }
     };
   })
+  .directive('logout', function($cookies, $state) {
+    return {
+
+      restrict: 'A',
+      scope: true,
+      link: function (scope, element, attrs) {
+        element.on('click', function () {
+          $cookies.remove('auth_token');
+          $cookies.remove('username');
+          $cookies.remove('house_id');
+          $state.go('tab.login');
+        });
+      }
+    };
+  })
   .directive('dairy', function() {
     return {
 

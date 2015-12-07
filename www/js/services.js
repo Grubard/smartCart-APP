@@ -16,7 +16,6 @@ angular.module('starter.services', [])
 
     var h = new House(house);
 
-
     return $http.post(url + '/house', h, SERVER.CONFIG);
   }
 

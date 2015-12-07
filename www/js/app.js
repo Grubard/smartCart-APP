@@ -12,7 +12,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     headers: {}
   }
 })
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $cookies, $state, AuthService, $stateParams) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,6 +26,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
   });
+
+  $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+
+    var x = AuthService.authenticate();
+    
+    if(toState.views.authenticate && x === true){
+      return;
+    }
+    if (toState.views.authenticate && x === false ){
+      
+      $state.go("tab.login");
+      event.preventDefault();
+      
+    }  
+   
+  });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -51,7 +68,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'home': {
         templateUrl: 'templates/home.html',
         controller: 'UserHomeController as vm'
-      }
+      },
+    authenticate: true
     }
   })
 
@@ -61,7 +79,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'pantry': {
         templateUrl: 'templates/pantry.html',
         controller: 'PantryController as vm',
-      }
+      },
+    authenticate: true
     }
   })
   .state('tab.login', {
@@ -70,7 +89,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'login': {
         templateUrl: 'templates/login.html',
         controller: 'LoginController as vm'
-      }
+      },
+    authenticate: false
     }
   })
 
@@ -80,7 +100,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'list': {
         templateUrl: 'templates/list.html',
         controller: 'ListController as vm',
-      }
+      },
+    authenticate: true
     }
   })
   .state('tab.create', {
@@ -89,7 +110,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'create': {
         templateUrl: 'templates/create.html',
         controller: 'LoginController as vm',
-      }
+      },
+    authenticate: true
     }
   })
   .state('tab.add', {
@@ -98,7 +120,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'add': {
         templateUrl: 'templates/adduser.html',
         controller: 'AddUserController as vm',
-      }
+      },
+    authenticate: true
     }
   });
 

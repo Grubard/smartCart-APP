@@ -1,5 +1,14 @@
-<ion-view view-title="List">
+<ion-view view-title="Add Users">
   <ion-content>
-    <h1>Adduser</h1>
+    <form ng-submit="vm.addUser(user)" class="list">
+      <h4>Add a User to Your House</h4>
+      <label class="item item-input">
+        <input type="text" ng-model="user.name" placeholder="Name">
+      </label>
+      <label class="item item-input">
+        <input type="text" ng-model="user.email" placeholder="Email"> 
+      </label>
+      <button class="button button-block button-positive">Add User</button>
+    </form>
   </ion-content>
 </ion-view>
