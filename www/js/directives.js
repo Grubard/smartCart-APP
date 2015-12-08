@@ -65,8 +65,8 @@ angular.module('starter.directives', [])
       link: function (scope, element, attrs) {
         element.on('click', function () {
 
-          var item = angular.element(element[0].nextSibling.nextElementSibling);
-     
+          var item = angular.element(element[0].nextElementSibling.children[0].children[0]);
+
           item.toggleClass('hide');
 
 

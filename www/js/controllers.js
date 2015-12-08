@@ -121,6 +121,28 @@ angular.module('starter.controllers', [])
       
     });
   }
+  $scope.shouldShowDelete = false;
+  $scope.shouldShowReorder = false;
+  $scope.listCanSwipe = true
+  // $scope.swipe = function () {
+  //   console.log('remove');
+  // };
+  $scope.data = {
+    showDelete: false
+  };
+  
+  $scope.edit = function(item) {
+    alert('Edit Item: ' + item.id);
+  };
+  $scope.delete = function(item) {
+    alert('Delete Item: ' + item.id);
+  };
+  
+  $scope.moveItem = function(item, fromIndex, toIndex) {
+    $scope.items.splice(fromIndex, 1);
+    $scope.items.splice(toIndex, 0, item);
+  };
+
 })
 
 .controller('LoginController', function($scope, SERVER, $http, $cookies, $state, LoginService) {
