@@ -9,61 +9,292 @@
     <div class="lists row">
       <div class="row list1">
         <div class="col col-100">
-          <div class="list list-inset">
+          <div id="pantry" class="list list-inset">
+            <div>              
+              <div class="item item-divider" child>
+                Produce
+                <span class="badge badge-positive">{{ vm.necessityAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.necessites">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div> 
 
-              <div class="item item-divider" dairy>
+            <div>              
+              <div class="item item-divider" child>
+                Produce
+                <span class="badge badge-positive">{{ vm.produceAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.produce">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>  
+                
+
+            <div>              
+              <div class="item item-divider" child>
                 Dairy
-                <span class="badge badge-positive">0</span>
-              </div>
-
-              <div class="item item-button-right dairy hide">
-                Potatos
-                <span class="badge badge-balanced">0</span>
+                <span class="badge badge-positive">{{ vm.dairyAmt }}</span>
               </div>
               <div class="item item-button-right dairy hide">
-                Bananas
-                <span class="badge badge-balanced">0</span>
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.dairy">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div> 
+
+            <div>              
+              <div class="item item-divider" child>
+                Deli
+                <span class="badge badge-positive">{{ vm.deliAmt }}</span>
               </div>
               <div class="item item-button-right dairy hide">
-                Milk
-                <span class="badge badge-balanced">0</span>
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.deli">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>  
+
+            <div>              
+              <div class="item item-divider" child>
+                Meats
+                <span class="badge badge-positive">{{ vm.meatsAmt }}</span>
               </div>
               <div class="item item-button-right dairy hide">
-                Eggs
-                <span class="badge badge-balanced">0</span>
-              </div>
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.meats">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>  
 
-              <div class="item item-divider" home>
-                Home Accesories
-                <span class="badge badge-positive">0</span>
+            <div>              
+              <div class="item item-divider" child>
+                Spices
+                <span class="badge badge-positive">{{ vm.spicesAmt }}</span>
               </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.spice">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>  
 
-              <div class="item item-button-right home hide">
-                Toliet Paper
-                <span class="badge badge-balanced">0</span>
+            <div>              
+              <div class="item item-divider" child>
+                Baking
+                <span class="badge badge-positive">{{ vm.bakingAmt }}</span>
               </div>
-              <div class="item item-button-right home hide">
-                Lunch Meat
-                <span class="badge badge-balanced">0</span>
-              </div>
-              <div class="item item-button-right home hide">
-                Flour
-                <span class="badge badge-balanced">0</span>
-              </div>
-              <div class="item item-button-right home hide">
-                Beer
-                <span class="badge badge-balanced">0</span>
-              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.baking">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div> 
 
-              <div class="item item-divider" butch>
-                Butcher
-                <span class="badge badge-positive">0</span>
+            <div>              
+              <div class="item item-divider" child>
+                Breakfast
+                <span class="badge badge-positive">{{ vm.breakfastAmt }}</span>
               </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.breakfast">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
 
-              <div class="item item-button-right butch hide">
-                Ground Beef
-                <span class="badge badge-balanced">0</span>
-              </div>     
+            <div>              
+              <div class="item item-divider" child>
+                Snacks
+                <span class="badge badge-positive">{{ vm.snacksAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.snacks">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
+
+            <div>              
+              <div class="item item-divider" child>
+                Sweets
+                <span class="badge badge-positive">{{ vm.sweetsAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.sweets">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
+
+            <div>              
+              <div class="item item-divider" child>
+                Grains
+                <span class="badge badge-positive">{{ vm.grainsAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.grains">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
+
+            <div>              
+              <div class="item item-divider" child>
+                Beverages
+                <span class="badge badge-positive">{{ vm.bevsAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.bevs">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
+
+            <div>              
+              <div class="item item-divider" child>
+                Hygiene
+                <span class="badge badge-positive">{{ vm.hygieneAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.hygiene">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
+
+            <div>              
+              <div class="item item-divider" child>
+                House Supplies
+                <span class="badge badge-positive">{{ vm.householdAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.household">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
+
+            <div>              
+              <div class="item item-divider" child>
+                Other
+                <span class="badge badge-positive">{{ vm.otherAmt }}</span>
+              </div>
+              <div class="item item-button-right dairy hide">
+                <table>
+                <tr>
+                  <td>Item</td>
+                  <td>Quantity</td>
+                </tr>
+                <tr ng-repeat="item in vm.other">
+                  <td>{{item.title}}</td>
+                  <td>{{item.quantity}}</td>
+                </tr>
+              </table>             
+              </div> 
+            </div>
 
           </div>
         </div>

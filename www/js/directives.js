@@ -57,14 +57,15 @@ angular.module('starter.directives', [])
       }
     };
   })
-  .directive('dairy', function() {
+  .directive('child', function() {
     return {
 
       restrict: 'A',
       scope: true,
       link: function (scope, element, attrs) {
         element.on('click', function () {
-          var item = angular.element(document.querySelectorAll('.dairy'));
+
+          var item = angular.element(element[0].nextSibling.nextElementSibling);
      
           item.toggleClass('hide');
 
