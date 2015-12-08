@@ -64,16 +64,19 @@ angular.module('starter.controllers', [])
 
   function pantryList() {
     PantryService.getPantryList().then( (response) => {
+      console.log(response);
       vm.pantryItems = response.data;
       var items = response.data;
       items.forEach(function(item) {
   
-        if (item.neccessity === true) {
+        if (item.necessity === true) {
           vm.necessity.push(item);
           vm.necessityAmt = vm.necessity.length;
+          console.log(vm.necessity);
         } else if (item.category === "Produce") {
           vm.produce.push(item);
           vm.produceAmt = vm.produce.length;
+          
         } else if(item.category === "Deli") {
           vm.deli.push(item);
           vm.deliAmt = vm.deli.length;
@@ -130,18 +133,34 @@ angular.module('starter.controllers', [])
   $scope.data = {
     showDelete: false
   };
+
+  $scope.add = function(item) {
+    alert('Added to Cart: ' + item.id);
+  };
   
   $scope.edit = function(item) {
     alert('Edit Item: ' + item.id);
   };
   $scope.delete = function(item) {
-    alert('Delete Item: ' + item.id);
+
+    PantryService.removeFood(item.id).then(()=> {
+      $state.reload();
+    });
+    
   };
   
   $scope.moveItem = function(item, fromIndex, toIndex) {
     $scope.items.splice(fromIndex, 1);
     $scope.items.splice(toIndex, 0, item);
   };
+
+  // function removeItem (object) {
+  //   console.log(object.id);
+  //   PantryService.removeFood(object.id);
+  //   setTimeout( function() {
+  //     $state.reload();
+  //   },100);
+  // }
 
 })
 

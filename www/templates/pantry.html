@@ -20,15 +20,19 @@
                 Necessity
                 <span class="badge badge-positive">{{ vm.necessityAmt }}</span>
               </div>
-              <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+              <ion-list>
 
                 <ion-item ng-repeat="item in vm.necessity" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -43,12 +47,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.produce" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -63,12 +71,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.dairy" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -83,12 +95,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.deli" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -103,12 +119,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.meats" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -123,12 +143,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.spices" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -143,12 +167,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.baking" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -163,12 +191,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.breakfast" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -183,12 +215,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.snacks" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -203,12 +239,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.sweets" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -223,12 +263,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.grains" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -243,12 +287,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.bevs" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -263,12 +311,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.hygiene" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -283,12 +335,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.household" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 
@@ -303,12 +359,16 @@
               <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
 
                 <ion-item ng-repeat="item in vm.other" item="item" class="item-remove-animate hide">
-                  {{ item.title }} {{item.quantity}}
+                  <h2>
+                  {{ item.title }} {{item.quantity}}</h2>
+                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    Delete
+                  </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
                     Edit
                   </ion-option-button>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    Delete
+                  <ion-option-button class="button-balanced" ng-click="add(item)">
+                    2Shop
                   </ion-option-button>
                 </ion-item>
 

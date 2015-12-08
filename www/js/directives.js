@@ -65,11 +65,13 @@ angular.module('starter.directives', [])
       link: function (scope, element, attrs) {
         element.on('click', function () {
 
-          var item = angular.element(element[0].nextElementSibling.children[0].children[0]);
-
-          item.toggleClass('hide');
-
-
+          var item = angular.element(element[0].nextElementSibling.children[0].children);
+          
+          angular.forEach(item, function(v, k) {
+            
+            var a = angular.element(v);
+            a.toggleClass('hide');
+          });
         });
       }
     };
