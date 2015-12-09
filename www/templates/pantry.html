@@ -27,10 +27,10 @@
                 <ion-item ng-repeat="item in vm.necessity" item="item" class="item-remove-animate hide">
                 <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete >
                     Delete
                   </ion-option-button>
-                  <ion-option-button class="button-calm" ng-click="edit(item)">
+                  <ion-option-button class="button-calm" ng-click="editPopup(item)">
                     Edit
                   </ion-option-button>
                   <ion-option-button class="button-balanced" ng-click="add(item)">
@@ -51,10 +51,10 @@
                 <ion-item ng-repeat="item in vm.produce" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
-                  <ion-option-button class="button-calm" ng-click="edit(item)">
+                  <ion-option-button class="button-calm" ng-click="editPopup()">
                     Edit
                   </ion-option-button>
                   <ion-option-button class="button-balanced" ng-click="add(item)">
@@ -75,10 +75,10 @@
                 <ion-item ng-repeat="item in vm.dairy" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
-                  <ion-option-button class="button-calm" ng-click="edit(item)">
+                  <ion-option-button class="button-calm" ng-click="editPopup(item)">
                     Edit
                   </ion-option-button>
                   <ion-option-button class="button-balanced" ng-click="add(item)">
@@ -99,7 +99,7 @@
                 <ion-item ng-repeat="item in vm.deli" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -123,7 +123,7 @@
                 <ion-item ng-repeat="item in vm.meats" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -147,7 +147,7 @@
                 <ion-item ng-repeat="item in vm.spices" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -171,7 +171,7 @@
                 <ion-item ng-repeat="item in vm.baking" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -195,7 +195,7 @@
                 <ion-item ng-repeat="item in vm.breakfast" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -219,7 +219,7 @@
                 <ion-item ng-repeat="item in vm.snacks" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -243,7 +243,7 @@
                 <ion-item ng-repeat="item in vm.sweets" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -267,7 +267,7 @@
                 <ion-item ng-repeat="item in vm.grains" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -291,7 +291,7 @@
                 <ion-item ng-repeat="item in vm.bevs" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -315,7 +315,7 @@
                 <ion-item ng-repeat="item in vm.hygiene" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -339,7 +339,7 @@
                 <ion-item ng-repeat="item in vm.household" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">
@@ -363,7 +363,7 @@
                 <ion-item ng-repeat="item in vm.other" item="item" class="item-remove-animate hide">
                   <h2>
                   {{ item.title }} {{item.quantity}}</h2>
-                  <ion-option-button class="button-assertive" ng-click="delete(item)">
+                  <ion-option-button class="button-assertive" ng-click="delete(item)" delete>
                     Delete
                   </ion-option-button>
                   <ion-option-button class="button-calm" ng-click="edit(item)">

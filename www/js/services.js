@@ -30,6 +30,7 @@ angular.module('starter.services', [])
   this.addItem = addItem;
   this.getPantryList = getPantryList;
   this.removeFood = removeFood;
+  this.editFoodItem = editFoodItem;
 
   function Item (foodItem) {
     this.title = foodItem.title;
@@ -52,7 +53,8 @@ angular.module('starter.services', [])
     return $http.delete(url + '/edible/' + objId, SERVER.CONFIG);
   }
    function editFoodItem (foodObj) {
-    return $http.post(url + '/edible/' + foodObj.id + '/edit', SERVER.CONFIG);
+    var x = foodObj.id;
+    return $http.put(url + '/edible/' + x, foodObj, SERVER.CONFIG);
   }
 })
 .service('ListService', function($http, SERVER, $cookies) {

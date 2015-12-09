@@ -76,6 +76,25 @@ angular.module('starter.directives', [])
       }
     };
   })
+  .directive('delete', function() {
+    return {
+
+      restrict: 'A',
+      scope: true,
+      link: function (scope, element, attrs) {
+        element.on('click', function () {
+          console.log(element[0].parentNode.parentNode);
+          var item = angular.element(element[0].parentNode.parentNode);
+          
+          item.addClass('hide');
+     
+        
+
+
+        });
+      }
+    };
+  })
   /// Will be deleted after for each funciton is in
   .directive('home', function() {
     return {

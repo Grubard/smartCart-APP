@@ -131,10 +131,6 @@ angular.module('starter.controllers', [])
   $scope.data = {
     showDelete: false
   };
-
-  $scope.add = function(item) {
-    alert('Added to Cart: ');
-  };
   
   $scope.edit = function(item) {
     alert('Edit Item: ' + item.id);
@@ -152,13 +148,6 @@ angular.module('starter.controllers', [])
     $scope.items.splice(toIndex, 0, item);
   };
 
-  // function removeItem (object) {
-  //   console.log(object.id);
-  //   PantryService.removeFood(object.id);
-  //   setTimeout( function() {
-  //     $state.reload();
-  //   },100);
-  // }
   $scope.showPopup = function() {
     $scope.food = {};
     $scope.quantity= {
@@ -172,7 +161,7 @@ angular.module('starter.controllers', [])
         value:'0'
     }
 
-    // An elaborate, custom popup
+
     var myPopup = $ionicPopup.show({
       template: `<form class="list">
                  <label class="item item-input">
@@ -239,6 +228,92 @@ angular.module('starter.controllers', [])
       });
     });
   };
+
+  $scope.editPopup = function(food) {
+    console.log(food);
+    $scope.food = {
+      title: food.title,
+      category: food.category,
+      quantity: food.quantity,
+      preferred: food.preferred,
+      necessity: food.necessity
+
+    };
+    $scope.newFood = {
+      title: food.title,
+      category: food.category,
+      quantity: food.quantity,
+      preferred: food.preferred,
+      necessity: food.necessity,
+      id: food.id
+    };
+
+    var myPopup = $ionicPopup.show({
+        template: `<form class="list">
+                   <label class="item item-input">
+                      <input type="text" placeholder="Item Name" value="{{food.title}}" ng-model="newFood.title">
+                    </label>
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Category
+                      </div>
+                      <select ng-model="newFood.category" selected="{{food.category}}">
+                        <option selected>Produce</option>
+                        <option>Dairy</option>
+                        <option>Deli</option>
+                        <option>Meats</option>
+                        <option>Spices</option>
+                        <option>Baking</option>
+                        <option>Breakfast</option>
+                        <option>Snacks</option>
+                        <option>Sweets</option>
+                        <option>Grains</option>
+                        <option>Beverages</option>
+                        <option>Hygiene</option>
+                        <option>House Supplies</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+                    <div class="item range range-positive">
+                      <span>On Hand: </span>
+                      <input type="range" name="volume" min="0" max="10" value="{{food.quantity}}" ng-model="newFood.quantity">                    
+                      <label>{{food.quantity}}</label>
+                    </div>
+                    <div class="item range range-positive">
+                      <span>Needed: </span>
+                      <input type="range" name="volume" min="0" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
+                      <label>{{food.preferred}}</label>
+                    </div>                  
+                    <ion-toggle value="newFood.necessity" ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
+                  </form>`,
+        title: 'Add a new Item',
+        subTitle: 'Fill out each input and press save!',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel' },
+          {
+            text: '<b>Save</b>',
+            type: 'button-positive',
+            onTap: function(e) {
+                         
+              if (!$scope.newFood.title || !$scope.newFood.category) {
+                e.preventDefault();
+              } else {
+                console.log($scope.newFood);
+                return $scope.newFood;              
+              }
+              
+            }
+          }
+        ]
+      });
+      myPopup.then(function(res) {
+        PantryService.editFoodItem(res).then((res2) => {
+          console.log(res2);
+          $state.reload();
+        });
+      });
+    };
 
 })
 
