@@ -35,6 +35,8 @@ angular.module('starter.controllers', [])
 .controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService) {
   var vm = this;
 
+  vm.addNewItem = addNewItem;
+
   groceryList();
   function groceryList() {
     ListService.getGroceryList().then( (response) => {
@@ -131,6 +133,12 @@ angular.module('starter.controllers', [])
   $scope.data = {
     showDelete: false
   };
+
+  function addNewItem (food) {
+    console.log(food);
+    ListService.addItem(food).then((response) => {
+    });
+  }
   
   $scope.edit = function(item) {
     alert('Edit Item: ' + item.id);
