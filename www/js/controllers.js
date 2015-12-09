@@ -242,10 +242,20 @@ angular.module('starter.controllers', [])
     $scope.newFood = {
       title: food.title,
       category: food.category,
+      necessity: food.necessity,
       quantity: food.quantity,
       preferred: food.preferred,
-      necessity: food.necessity,
       id: food.id
+    };
+    $scope.quantity= {
+        min:'0',
+        max:'20000',
+        value: food.quantity
+    };
+    $scope.preferred= {
+        min:'0',
+        max:'20000',
+        value: food.preferred
     };
 
     var myPopup = $ionicPopup.show({
@@ -276,17 +286,17 @@ angular.module('starter.controllers', [])
                     </label>
                     <div class="item range range-positive">
                       <span>On Hand: </span>
-                      <input type="range" name="volume" min="0" max="10" value="{{food.quantity}}" ng-model="newFood.quantity">                    
-                      <label>{{food.quantity}}</label>
+                      <input type="range" name="volume" min="{{quantity.min}}" max="10" value="{{food.quantity}}" ng-model="newFood.quantity">                    
+                      <label>{{newFood.quantity}}</label>
                     </div>
                     <div class="item range range-positive">
                       <span>Needed: </span>
-                      <input type="range" name="volume" min="0" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
-                      <label>{{food.preferred}}</label>
+                      <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
+                      <label>{{newFood.preferred}}</label>
                     </div>                  
                     <ion-toggle value="newFood.necessity" ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
-        title: 'Add a new Item',
+        title: 'Edit Item',
         subTitle: 'Fill out each input and press save!',
         scope: $scope,
         buttons: [
@@ -295,11 +305,13 @@ angular.module('starter.controllers', [])
             text: '<b>Save</b>',
             type: 'button-positive',
             onTap: function(e) {
-                         
+              // $scope.newFood.quantity = $scope.quantity.value;
+              // $scope.newFood.preferred = $scope.preferred.value; 
+              // console.log($scope.newFood);
               if (!$scope.newFood.title || !$scope.newFood.category) {
                 e.preventDefault();
               } else {
-                console.log($scope.newFood);
+                // console.log($scope.newFood);
                 return $scope.newFood;              
               }
               
@@ -309,7 +321,7 @@ angular.module('starter.controllers', [])
       });
       myPopup.then(function(res) {
         PantryService.editFoodItem(res).then((res2) => {
-          console.log(res2);
+          // console.log(res2);
           $state.reload();
         });
       });
