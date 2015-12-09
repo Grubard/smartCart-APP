@@ -45,3 +45,21 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 #pantry {
   margin-bottom: 3em;
 }
+
+#groceryList {
+  margin-top: 3em;
+}
+
+h2.titles {
+  // margin-left: 3em;
+}
+
+.item-checkbox {
+    padding-left: 0;
+
+    .checkbox {
+      left: initial;
+      padding-left: 107%;
+      padding-bottom: 4%;
+    }
+}

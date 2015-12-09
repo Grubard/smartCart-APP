@@ -1,4 +1,4 @@
-<ion-view view-title="smartCart">
+<ion-view view-title="Grocery List">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -6,12 +6,39 @@
     <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
   </ion-nav-buttons>
   <ion-content has-header="true" padding="true">
-    <div class="lists row">
+    <div id="groceryList" class="lists row">
       <div class="row list2">
         <div class="col col-100">
-          <div class="list list-inset">
-              
-          </div>
+          <ion-header-bar class="bar-positive">
+            <div class="buttons">
+              <button class="button button-icon icon ion-ios-minus-outline"
+                ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
+                <button class="button button-icon icon ion-ios-plus-outline" ng-click="showPopup()"></button>
+            </div>
+            <h1 class="title">Checklist</h1>
+            <div class="buttons">
+              <button class="button" ng-click="vm.addItemsToPantry()">
+                  Send To Pantry
+              </button>
+            </div>
+          </ion-header-bar>
+          
+            <ion-list show-delete="data.showDelete">
+              <ion-item ng-repeat="object in vm.groceryListYay" item="item" class="item-remove-animate item item-checkbox">
+
+                <h2 class="titles">{{ object.title }}</h2>
+                
+                <label class="checkbox">
+                  <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
+                </label>
+                 
+                <ion-delete-button class="ion-minus-circled" ng-click="vm.removeItem(object)">
+                </ion-delete-button>            
+                
+                <!-- <ion-option-button class="button-balanced">Check</ion-option-button> -->
+              </ion-item>
+
+            </ion-list>
         </div>
       </div>
     </div>

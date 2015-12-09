@@ -11183,3 +11183,13 @@ a.button {
 
 #pantry {
   margin-bottom: 3em; }
+
+#groceryList {
+  margin-top: 3em; }
+
+.item-checkbox {
+  padding-left: 0; }
+  .item-checkbox .checkbox {
+    left: initial;
+    padding-left: 107%;
+    padding-bottom: 4%; }

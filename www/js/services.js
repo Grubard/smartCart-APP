@@ -21,6 +21,43 @@ angular.module('starter.services', [])
 
 
 })
+.service('TransferService', function($http, SERVER, $cookies) {
+  var url = SERVER.URL ;
+  var token = $cookies.get('auth_token');
+  SERVER.CONFIG.headers['Access-Token'] = token;
+  this.transferItems = transferItems;
+  
+  function transferItems(pantry){
+    $http.get(url + '/grocery' , SERVER.CONFIG).then((res)=>{
+
+      var groceries = res.data;
+      var grocNames = [];
+      groceries.map(function(name){
+        grocNames.push(name.title);
+      });
+
+      
+
+      pantry.map(function(panItem){
+
+        if(panItem.quantity < panItem.preferred && panItem.necessity === true){
+          var yay = $.inArray(panItem.title, grocNames);
+          
+          if(yay === -1){
+            $http.post(url + '/grocery', panItem, SERVER.CONFIG).then((res)=>{
+
+            });
+          }
+        }
+
+        
+      });
+
+    });
+  }
+
+
+})
 .service('PantryService', function($http, SERVER, $cookies) {
   var url = SERVER.URL;
   var token = $cookies.get('auth_token');

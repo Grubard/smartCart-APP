@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.1.1"
   },
   "dependencies": {
-    "fontawesome": "~4.5.0"
+    "fontawesome": "~4.5.0",
+    "checklist-model": "~0.8.0"
   }
 }
