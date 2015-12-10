@@ -472,17 +472,21 @@ angular.module('starter.controllers', [])
   }
 
   groceryList();
-  function groceryList() {    
+  function groceryList() {   
+    vm.groceryListYay = [];
+
     // ListService.getGroceryList().then( (response) => {
 
     //   vm.groceryListYay = response.data;
     // });
 
-    angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addToList', 'addListItem', 'clearListItem'], function(value) {
+    angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addListItem', 'clearListItem'], function(value) {
+    
       $rootScope.$on(value, function (e, a) {
         ListService.getGroceryList().then( (response) => {
 
           vm.groceryListYay = response.data;
+        
         });
       });
     })
