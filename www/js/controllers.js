@@ -37,12 +37,12 @@ angular.module('starter.controllers', [])
 
   vm.addNewItem = addNewItem;
 
-  groceryList();
-  function groceryList() {
-    ListService.getGroceryList().then( (response) => {
-      vm.items = response.data;
-    });
-  }
+  // groceryList();
+  // function groceryList() {
+  //   ListService.getGroceryList().then( (response) => {
+  //     vm.items = response.data;
+  //   });
+  // }
 
   vm.necessity = [];
   vm.produce = [];
@@ -143,10 +143,13 @@ angular.module('starter.controllers', [])
   $scope.edit = function(item) {
     alert('Edit Item: ' + item.id);
   };
+
   $scope.delete = function(item) {
 
     PantryService.removeFood(item.id).then(()=> {
-      $state.reload();
+      $timeout( function() {
+        $state.reload();
+      },0);
     });
     
   };
@@ -230,8 +233,8 @@ angular.module('starter.controllers', [])
       ]
     });
     myPopup.then(function(res) {
-      PantryService.addItem(res).then((res2) => {
-        console.log(res2);
+      PantryService.addItem(res).success((res2) => {
+        
         $state.reload();
       });
     });
@@ -385,7 +388,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListController', function($scope, SERVER, $cookies, ListService, $state, $http, $ionicPopup) {
+.controller('ListController', function($scope, SERVER, $cookies, ListService, $state, $http, $ionicPopup, $timeout) {
   var items= [];
 
   var vm = this;
@@ -439,9 +442,9 @@ angular.module('starter.controllers', [])
   function clearThese() {
     vm.purchased.map(function(x){
       ListService.removeFood(x.id);
-      setTimeout( function() {
+      $timeout( function() {
         $state.reload();
-      },100);
+      },0);
     });
   }
 
@@ -521,7 +524,9 @@ angular.module('starter.controllers', [])
     myPopup.then(function(res) {
       ListService.addItem(res).then((res2) => {
         
-        $state.reload();
+        $timeout( function() {
+          $state.reload();
+        },0);
       });
     });
   };
