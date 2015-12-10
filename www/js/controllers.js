@@ -32,99 +32,154 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService) {
+.controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService, $timeout, $rootScope) {
   var vm = this;
 
   vm.addNewItem = addNewItem;
 
-  // groceryList();
-  // function groceryList() {
-  //   ListService.getGroceryList().then( (response) => {
-  //     vm.items = response.data;
-  //   });
-  // }
 
-  vm.necessity = [];
-  vm.produce = [];
-  vm.deli = [];
-  vm.meats = [];
-  vm.spices = [];
-  vm.baking = [];
-  vm.breakfast = [];
-  vm.snacks = [];
-  vm.sweets = [];
-  vm.grains = [];
-  vm.frozen = [];
-  vm.bevs = [];
-  vm.hygiene = [];
-  vm.household = [];
-  vm.dairy = [];
-  vm.other = [];
-  
-
-  // pantryList();
   pantryList();
 
   function pantryList() {
-    PantryService.getPantryList().then( (response) => {
+    angular.forEach(['$stateChangeSuccess', 'addPantryItem', 'deletePantryItem', 'editPantryItem', 'addToPantry'] , function(value) {
+      $scope.$on(value, function (e, a) {
+        PantryService.getPantryList().then( (response) => {
+          vm.necessity = [];
+          vm.produce = [];
+          vm.deli = [];
+          vm.meats = [];
+          vm.spices = [];
+          vm.baking = [];
+          vm.breakfast = [];
+          vm.snacks = [];
+          vm.sweets = [];
+          vm.grains = [];
+          vm.frozen = [];
+          vm.bevs = [];
+          vm.hygiene = [];
+          vm.household = [];
+          vm.dairy = [];
+          vm.other = [];
 
-      vm.pantryItems = response.data;
-      TransferService.transferItems(vm.pantryItems);
-      var items = response.data;
-      items.forEach(function(item) {
-  
-        if (item.necessity === true) {
-          vm.necessity.push(item);
-          vm.necessityAmt = vm.necessity.length;
-        } else if (item.category === "Produce") {
-          vm.produce.push(item);
-          vm.produceAmt = vm.produce.length;
-        } else if(item.category === "Deli") {
-          vm.deli.push(item);
-          vm.deliAmt = vm.deli.length;
-        } else if(item.category === "Meats") {
-          vm.meats.push(item);
-          vm.meatsAmt = vm.meats.length;
-        } else if(item.category === "Spices") {
-          vm.spices.push(item);
-          vm.spicesAmt = vm.spices.length;
-        } else if(item.category === "Baking") {
-          vm.baking.push(item);
-          vm.bakingAmt = vm.baking.length;
-        } else if(item.category === "Breakfast") {
-          vm.breakfast.push(item);
-          vm.breakfastAmt = vm.breakfast.length;
-        } else if(item.category === "Snacks") {
-          vm.snacks.push(item);
-          vm.snacksAmt = vm.snacks.length;
-        } else if(item.category === "Sweets") {
-          vm.sweets.push(item);
-          vm.sweetsAmt = vm.sweets.length;
-        } else if(item.category === "Grains") {
-          vm.grains.push(item);
-          vm.grainsAmt = vm.grains.length;
-        } else if(item.category === "Frozen") {
-          vm.frozen.push(item);
-          vm.frozenAmt = vm.frozen.length;
-        } else if(item.category === "Beverages") {
-          vm.bevs.push(item);
-          vm.bevsAmt = vm.bevs.length;
-        } else if(item.category === "Hygiene") {
-          vm.hygiene.push(item);
-          vm.hygieneAmt = vm.hygiene.length;
-        } else if(item.category === "Household") {
-          vm.household.push(item);
-          vm.householdAmt = vm.household.length;
-        } else if(item.category === "Dairy") {
-          vm.dairy.push(item);
-          vm.dairyAmt = vm.dairy.length;
-        } else {
-          vm.other.push(item);
-          vm.otherAmt = vm.other.length;
-        }
+          vm.pantryItems = response.data;
+          TransferService.transferItems(vm.pantryItems);
+          var items = response.data;
+          items.forEach(function(item) {
+    
+          if (item.necessity === true) {
+            vm.necessity.push(item);
+            vm.necessityAmt = vm.necessity.length;
+          } else if (item.category === "Produce") {
+            vm.produce.push(item);
+            vm.produceAmt = vm.produce.length;
+          } else if(item.category === "Deli") {
+            vm.deli.push(item);
+            vm.deliAmt = vm.deli.length;
+          } else if(item.category === "Meats") {
+            vm.meats.push(item);
+            vm.meatsAmt = vm.meats.length;
+          } else if(item.category === "Spices") {
+            vm.spices.push(item);
+            vm.spicesAmt = vm.spices.length;
+          } else if(item.category === "Baking") {
+            vm.baking.push(item);
+            vm.bakingAmt = vm.baking.length;
+          } else if(item.category === "Breakfast") {
+            vm.breakfast.push(item);
+            vm.breakfastAmt = vm.breakfast.length;
+          } else if(item.category === "Snacks") {
+            vm.snacks.push(item);
+            vm.snacksAmt = vm.snacks.length;
+          } else if(item.category === "Sweets") {
+            vm.sweets.push(item);
+            vm.sweetsAmt = vm.sweets.length;
+          } else if(item.category === "Grains") {
+            vm.grains.push(item);
+            vm.grainsAmt = vm.grains.length;
+          } else if(item.category === "Frozen") {
+            vm.frozen.push(item);
+            vm.frozenAmt = vm.frozen.length;
+          } else if(item.category === "Beverages") {
+            vm.bevs.push(item);
+            vm.bevsAmt = vm.bevs.length;
+          } else if(item.category === "Hygiene") {
+            vm.hygiene.push(item);
+            vm.hygieneAmt = vm.hygiene.length;
+          } else if(item.category === "Household") {
+            vm.household.push(item);
+            vm.householdAmt = vm.household.length;
+          } else if(item.category === "Dairy") {
+            vm.dairy.push(item);
+            vm.dairyAmt = vm.dairy.length;
+          } else {
+            vm.other.push(item);
+            vm.otherAmt = vm.other.length;
+          }
+        });
+        
+        });
       });
+    })
+
+    // PantryService.getPantryList().then( (response) => {
+
+    //   vm.pantryItems = response.data;
+    //   TransferService.transferItems(vm.pantryItems);
+    //   var items = response.data;
+    //   items.forEach(function(item) {
+  
+    //     if (item.necessity === true) {
+    //       vm.necessity.push(item);
+    //       vm.necessityAmt = vm.necessity.length;
+    //     } else if (item.category === "Produce") {
+    //       vm.produce.push(item);
+    //       vm.produceAmt = vm.produce.length;
+    //     } else if(item.category === "Deli") {
+    //       vm.deli.push(item);
+    //       vm.deliAmt = vm.deli.length;
+    //     } else if(item.category === "Meats") {
+    //       vm.meats.push(item);
+    //       vm.meatsAmt = vm.meats.length;
+    //     } else if(item.category === "Spices") {
+    //       vm.spices.push(item);
+    //       vm.spicesAmt = vm.spices.length;
+    //     } else if(item.category === "Baking") {
+    //       vm.baking.push(item);
+    //       vm.bakingAmt = vm.baking.length;
+    //     } else if(item.category === "Breakfast") {
+    //       vm.breakfast.push(item);
+    //       vm.breakfastAmt = vm.breakfast.length;
+    //     } else if(item.category === "Snacks") {
+    //       vm.snacks.push(item);
+    //       vm.snacksAmt = vm.snacks.length;
+    //     } else if(item.category === "Sweets") {
+    //       vm.sweets.push(item);
+    //       vm.sweetsAmt = vm.sweets.length;
+    //     } else if(item.category === "Grains") {
+    //       vm.grains.push(item);
+    //       vm.grainsAmt = vm.grains.length;
+    //     } else if(item.category === "Frozen") {
+    //       vm.frozen.push(item);
+    //       vm.frozenAmt = vm.frozen.length;
+    //     } else if(item.category === "Beverages") {
+    //       vm.bevs.push(item);
+    //       vm.bevsAmt = vm.bevs.length;
+    //     } else if(item.category === "Hygiene") {
+    //       vm.hygiene.push(item);
+    //       vm.hygieneAmt = vm.hygiene.length;
+    //     } else if(item.category === "Household") {
+    //       vm.household.push(item);
+    //       vm.householdAmt = vm.household.length;
+    //     } else if(item.category === "Dairy") {
+    //       vm.dairy.push(item);
+    //       vm.dairyAmt = vm.dairy.length;
+    //     } else {
+    //       vm.other.push(item);
+    //       vm.otherAmt = vm.other.length;
+    //     }
+    //   });
       
-    });
+    // });
   }
   $scope.shouldShowDelete = false;
   $scope.shouldShowReorder = false;
@@ -136,28 +191,27 @@ angular.module('starter.controllers', [])
 
   function addNewItem (food) {
     console.log(food);
-    ListService.addItem(food).then((response) => {
-    });
+    ListService.addItem(food).success(() => {
+      $rootScope.$broadcast('addToList');
+      
+    });;
+    
+
   }
-  
-  $scope.edit = function(item) {
-    alert('Edit Item: ' + item.id);
-  };
 
   $scope.delete = function(item) {
 
-    PantryService.removeFood(item.id).then(()=> {
-      $timeout( function() {
-        $state.reload();
-      },0);
+    PantryService.removeFood(item.id).success(() => {
+      $rootScope.$broadcast('deletePantryItem');
+      
     });
     
   };
   
-  $scope.moveItem = function(item, fromIndex, toIndex) {
-    $scope.items.splice(fromIndex, 1);
-    $scope.items.splice(toIndex, 0, item);
-  };
+  // $scope.moveItem = function(item, fromIndex, toIndex) {
+  //   $scope.items.splice(fromIndex, 1);
+  //   $scope.items.splice(toIndex, 0, item);
+  // };
 
   $scope.showPopup = function() {
     $scope.food = {};
@@ -235,13 +289,14 @@ angular.module('starter.controllers', [])
     myPopup.then(function(res) {
       PantryService.addItem(res).success((res2) => {
         
-        $state.reload();
+        
+        $rootScope.$broadcast('addPantryItem');
       });
     });
   };
 
   $scope.editPopup = function(food) {
-    console.log(food);
+    
     $scope.food = {
       title: food.title,
       category: food.category,
@@ -250,14 +305,16 @@ angular.module('starter.controllers', [])
       necessity: food.necessity
 
     };
+   
     $scope.newFood = {
       title: food.title,
       category: food.category,
-      necessity: food.necessity,
       quantity: food.quantity,
       preferred: food.preferred,
+      necessity: food.necessity,
       id: food.id
     };
+
     $scope.quantity= {
         min:'0',
         max:'20000',
@@ -305,7 +362,7 @@ angular.module('starter.controllers', [])
                       <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
                       <label>{{newFood.preferred}}</label>
                     </div>                  
-                    <ion-toggle value="newFood.necessity" ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
+                    <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
         title: 'Edit Item',
         subTitle: 'Fill out each input and press save!',
@@ -322,7 +379,7 @@ angular.module('starter.controllers', [])
               if (!$scope.newFood.title || !$scope.newFood.category) {
                 e.preventDefault();
               } else {
-                // console.log($scope.newFood);
+                
                 return $scope.newFood;              
               }
               
@@ -332,8 +389,8 @@ angular.module('starter.controllers', [])
       });
       myPopup.then(function(res) {
         PantryService.editFoodItem(res).then((res2) => {
-          // console.log(res2);
-          $state.reload();
+
+          $rootScope.$broadcast('editPantryItem');
         });
       });
     };
@@ -388,7 +445,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListController', function($scope, SERVER, $cookies, ListService, $state, $http, $ionicPopup, $timeout) {
+.controller('ListController', function($scope, SERVER, $cookies, ListService, $state, $http, $ionicPopup, $timeout, $rootScope) {
   var items= [];
 
   var vm = this;
@@ -408,43 +465,56 @@ angular.module('starter.controllers', [])
   };
 
   function addNewItem (food) {
-    ListService.addItem(food).then((response) => {
+    ListService.addItem(food).success(() => {
+      $rootScope.$broadcast('addToList');
+      
     });
   }
 
   groceryList();
   function groceryList() {    
-    ListService.getGroceryList().then( (response) => {
+    // ListService.getGroceryList().then( (response) => {
 
-      vm.groceryListYay = response.data;
-    
-    });
+    //   vm.groceryListYay = response.data;
+    // });
+
+    angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addToList', 'addListItem', 'clearListItem'], function(value) {
+      $rootScope.$on(value, function (e, a) {
+        ListService.getGroceryList().then( (response) => {
+
+          vm.groceryListYay = response.data;
+        });
+      });
+    })
   }
   function removeItem (object) {
-    ListService.removeFood(object.id);
-    setTimeout( function() {
-      $state.reload();
-    },100);
+    ListService.removeFood(object.id).success(() => {
+      $rootScope.$broadcast('deleteListItem');
+      
+    });
   }
 
   function addItemsToPantry() {
+    console.log(vm.purchased);
 
     vm.purchased.map(function(x){
-      $http.post(url + '/edible', x, SERVER.CONFIG).then((res)=>{
-        ListService.removeFood(x.id);
-        setTimeout( function() {
-          $state.reload();
-        },100);
+      console.log(x);
+      $http.post(url + '/edible', x, SERVER.CONFIG).success((res)=>{
+        ListService.removeFood(x.id).success(() => {
+          $rootScope.$broadcast('addToPantry');
+          
+        });   
       });
     });  
+    vm.purchased = [];     
   }
   
   function clearThese() {
     vm.purchased.map(function(x){
-      ListService.removeFood(x.id);
-      $timeout( function() {
-        $state.reload();
-      },0);
+      ListService.removeFood(x.id).success(() => {
+        $rootScope.$broadcast('clearListItem');
+        
+      });
     });
   }
 
@@ -522,11 +592,8 @@ angular.module('starter.controllers', [])
       ]
     });
     myPopup.then(function(res) {
-      ListService.addItem(res).then((res2) => {
-        
-        $timeout( function() {
-          $state.reload();
-        },0);
+      ListService.addItem(res).then((res2) => {        
+        $rootScope.$broadcast('addListItem');
       });
     });
   };
