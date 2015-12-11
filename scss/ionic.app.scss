@@ -90,23 +90,30 @@ h2.titles {
 }
 
 .image, .image0, .image1, .image2, .image3, .image4, .image5, .image6, .image7, .image8, .image9, .image10, .image11, .image12, .image13, .image14 {
-  opacity: .8;
-  color: white;
+
+  position: relative;
+  
+  
+  
+}
+.row  p {
   font-weight: 800;
   font-size: 1em;
   text-align: center;
-    p {
-      background-color: black;
-      border-radius: .2em;
-      padding: .2em;
-      span {
-        margin-left: 5px;
-      }
-    }
-  &:focus {
-    opacity: 1;
+  color: white;
+  background-color: #222;
+  border-radius: .2em;
+  padding: .2em;
+  width: 90%;
+  height: 2em;
+  position: absolute;
+  left: 5%;
+  top: 5%;
+  span {
+    margin-left: 5px;
   }
 }
+
 .image {
   background-image: url(../img/other.jpg);
   background-size: cover;
@@ -119,81 +126,101 @@ h2.titles {
   background-repeat: no-repeat;
 }
 .image1 {
-  background-image: url(../img/deli.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.image2 {
-  background-image: url(../img/meats.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.image3 {
-  background-image: url(../img/spices.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.image4 {
-  background-image: url(../img/baking.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.image5 {
-  background-image: url(../img/breakfast.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.image6 {
-  background-image: url(../img/dairy.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.image7 {
   background-image: url(../img/produce.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image8 {
+.image2 {
+  background-image: url(../img/deli.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image3 {
+  background-image: url(../img/meats.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image4 {
+  background-image: url(../img/spices.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image5 {
+  background-image: url(../img/baking.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image6 {
+  background-image: url(../img/breakfast.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image7 {
   background-image: url(../img/snacks.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image9 {
+.image8 {
   background-image: url(../img/sweets.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image10 {
+.image9 {
   background-image: url(../img/grains.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image11 {
+.image10 {
   background-image: url(../img/frozen.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image12 {
+.image11 {
   background-image: url(../img/beverages.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image13 {
+.image12 {
   background-image: url(../img/hygiene.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
-.image14 {
+.image13 {
   background-image: url(../img/household.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image14 {
+  background-image: url(../img/other.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .goToList {
-  background-color: black;
+  background-color: #26CF59;
+  
 }
 
+.cap {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.howto {
+  font-style: italic;
+  font-size: .8em;
+  text-align: center;
+}
+.button.button.button-block.goBtn {
+  background: transparent;
+  border: 3px solid #00C0F5;
+  color: white;
+  border-radius: .5em;
+  font-weight: bold;
+  line-height: 1px;
 
-
+}
+.list-left-editing {
+  margin-top: 3em;
+}
 
 

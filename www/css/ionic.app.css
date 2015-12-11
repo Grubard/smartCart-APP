@@ -11206,19 +11206,23 @@ a.button {
     padding-bottom: 4%; }
 
 .image, .image0, .image1, .image2, .image3, .image4, .image5, .image6, .image7, .image8, .image9, .image10, .image11, .image12, .image13, .image14 {
-  opacity: .8;
-  color: white;
+  position: relative; }
+
+.row p {
   font-weight: 800;
   font-size: 1em;
-  text-align: center; }
-  .image p, .image0 p, .image1 p, .image2 p, .image3 p, .image4 p, .image5 p, .image6 p, .image7 p, .image8 p, .image9 p, .image10 p, .image11 p, .image12 p, .image13 p, .image14 p {
-    background-color: black;
-    border-radius: .2em;
-    padding: .2em; }
-    .image p span, .image0 p span, .image1 p span, .image2 p span, .image3 p span, .image4 p span, .image5 p span, .image6 p span, .image7 p span, .image8 p span, .image9 p span, .image10 p span, .image11 p span, .image12 p span, .image13 p span, .image14 p span {
-      margin-left: 5px; }
-  .image:focus, .image0:focus, .image1:focus, .image2:focus, .image3:focus, .image4:focus, .image5:focus, .image6:focus, .image7:focus, .image8:focus, .image9:focus, .image10:focus, .image11:focus, .image12:focus, .image13:focus, .image14:focus {
-    opacity: 1; }
+  text-align: center;
+  color: white;
+  background-color: #222;
+  border-radius: .2em;
+  padding: .2em;
+  width: 90%;
+  height: 2em;
+  position: absolute;
+  left: 5%;
+  top: 5%; }
+  .row p span {
+    margin-left: 5px; }
 
 .image {
   background-image: url(../img/other.jpg);
@@ -11231,74 +11235,94 @@ a.button {
   background-repeat: no-repeat; }
 
 .image1 {
-  background-image: url(../img/deli.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.image2 {
-  background-image: url(../img/meats.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.image3 {
-  background-image: url(../img/spices.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.image4 {
-  background-image: url(../img/baking.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.image5 {
-  background-image: url(../img/breakfast.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.image6 {
-  background-image: url(../img/dairy.jpg);
-  background-size: cover;
-  background-repeat: no-repeat; }
-
-.image7 {
   background-image: url(../img/produce.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image8 {
+.image2 {
+  background-image: url(../img/deli.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.image3 {
+  background-image: url(../img/meats.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.image4 {
+  background-image: url(../img/spices.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.image5 {
+  background-image: url(../img/baking.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.image6 {
+  background-image: url(../img/breakfast.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.image7 {
   background-image: url(../img/snacks.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image9 {
+.image8 {
   background-image: url(../img/sweets.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image10 {
+.image9 {
   background-image: url(../img/grains.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image11 {
+.image10 {
   background-image: url(../img/frozen.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image12 {
+.image11 {
   background-image: url(../img/beverages.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image13 {
+.image12 {
   background-image: url(../img/hygiene.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
-.image14 {
+.image13 {
   background-image: url(../img/household.jpg);
   background-size: cover;
   background-repeat: no-repeat; }
 
+.image14 {
+  background-image: url(../img/other.jpg);
+  background-size: cover;
+  background-repeat: no-repeat; }
+
 .goToList {
-  background-color: black; }
+  background-color: #26CF59; }
+
+.cap {
+  text-transform: uppercase;
+  font-weight: 800; }
+
+.howto {
+  font-style: italic;
+  font-size: .8em;
+  text-align: center; }
+
+.button.button.button-block.goBtn {
+  background: transparent;
+  border: 3px solid #00C0F5;
+  color: white;
+  border-radius: .5em;
+  font-weight: bold;
+  line-height: 1px; }
+
+.list-left-editing {
+  margin-top: 3em; }
