@@ -6,6 +6,9 @@ navigation history that also transitions its views in and out.
 <ion-side-menus>
   <ion-side-menu-content ng-controller="NavController">
     <ion-nav-bar class="bar-balanced nav-title-slide-ios7">
+      <ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i> Back
+      </ion-nav-back-button>
       
     </ion-nav-bar>
     <ion-nav-view name="tab"></ion-nav-view>
@@ -19,7 +22,6 @@ navigation history that also transitions its views in and out.
       <ul class="list">
         <a ui-sref="tab.home" class="item" ng-click="toggleLeft()">Home</a>
         <a ui-sref="tab.add" class="item" ng-click="toggleLeft()">Add Users</a>
-        <a ui-sref="tab.account" class="item" ng-click="toggleLeft()">Account Settings</a> 
         <a ui-sref="tab.contact" class="item" ng-click="toggleLeft()">Contact Us</a>        
         <a class="button button-positive button-block" menu-close logout>
           Logout
@@ -29,7 +31,7 @@ navigation history that also transitions its views in and out.
 
   </ion-side-menu>
 </ion-side-menus>
-<div class="tabs tabs-icon-only">
+<!-- <div class="tabs tabs-icon-only">
   <a class="tab-item disable-user-behavior" title="Pantry" ui-sref="tab.pantry">
     <i class="icon ion-icon ion-ios-list-outline"><span>Master List</span></i>
     <span class="tab-title ng-binding" ng-bind-html="title"></span>
@@ -38,7 +40,7 @@ navigation history that also transitions its views in and out.
     <i class="icon ion-icon ion-ios-cart-outline"><span>Smart Cart</span></i>
     <span class="tab-title ng-binding" ng-bind-html="title"></span>
   </a>
-</div>
+</div> -->
 
 
 

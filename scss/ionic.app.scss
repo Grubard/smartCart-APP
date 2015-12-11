@@ -47,11 +47,36 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 }
 
 #groceryList {
-  margin-top: 3em;
+  // margin-top: 3em;
 }
 
 h2.titles {
   // margin-left: 3em;
+}
+
+.padding {
+  padding: 0;
+}
+.home {
+  margin-bottom: 2.9em;
+
+  .row {
+    
+    .col {
+      // border: 1px solid;
+      margin-bottom: 5px;
+      padding: 3.08em;
+    }
+  }
+  .last {
+    margin-bottom: 0;
+  }
+}
+
+.bar.bar-footer {
+  .button.button-block {
+    margin: 0;
+  }
 }
 
 .item-checkbox {
@@ -63,3 +88,112 @@ h2.titles {
       padding-bottom: 4%;
     }
 }
+
+.image, .image0, .image1, .image2, .image3, .image4, .image5, .image6, .image7, .image8, .image9, .image10, .image11, .image12, .image13, .image14 {
+  opacity: .8;
+  color: white;
+  font-weight: 800;
+  font-size: 1em;
+  text-align: center;
+    p {
+      background-color: black;
+      border-radius: .2em;
+      padding: .2em;
+      span {
+        margin-left: 5px;
+      }
+    }
+  &:focus {
+    opacity: 1;
+  }
+}
+.image {
+  background-image: url(../img/other.jpg);
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+.image0 {
+  background-image: url(../img/dairy.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image1 {
+  background-image: url(../img/deli.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image2 {
+  background-image: url(../img/meats.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image3 {
+  background-image: url(../img/spices.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image4 {
+  background-image: url(../img/baking.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image5 {
+  background-image: url(../img/breakfast.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image6 {
+  background-image: url(../img/dairy.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image7 {
+  background-image: url(../img/produce.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image8 {
+  background-image: url(../img/snacks.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image9 {
+  background-image: url(../img/sweets.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image10 {
+  background-image: url(../img/grains.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image11 {
+  background-image: url(../img/frozen.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image12 {
+  background-image: url(../img/beverages.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image13 {
+  background-image: url(../img/hygiene.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.image14 {
+  background-image: url(../img/household.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.goToList {
+  background-color: black;
+}
+
+
+
+
+

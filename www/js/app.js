@@ -12,7 +12,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     headers: {}
   }
 })
-.run(function($ionicPlatform, $rootScope, $cookies, $state, AuthService, $stateParams) {
+.run(function($ionicPlatform, $rootScope, $cookies, $state, AuthService, $stateParams, $ionicNavBarDelegate, $location) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -28,6 +28,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+    var path = $location.path();
+    
+    if (path.indexOf('list') != -1) {
+
+      $ionicNavBarDelegate.showBackButton(false);
+    }
+    else {
+      $ionicNavBarDelegate.showBackButton(true);
+    }
 
     var x = AuthService.authenticate();
     
@@ -67,11 +76,172 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab': {
         templateUrl: 'templates/home.html',
-        controller: 'UserHomeController as vm'
+        controller: 'PantryController as vm'
       },
     authenticate: true
     }
   })
+  .state('tab.necessity', {
+    url: '/necessity',
+    views: {
+      'tab': {
+        templateUrl: 'templates/necessity.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.dairy', {
+    url: '/dairy',
+    views: {
+      'tab': {
+        templateUrl: 'templates/dairy.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.produce', {
+    url: '/produce',
+    views: {
+      'tab': {
+        templateUrl: 'templates/produce.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.deli', {
+    url: '/deli',
+    views: {
+      'tab': {
+        templateUrl: 'templates/deli.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.meats', {
+    url: '/meats',
+    views: {
+      'tab': {
+        templateUrl: 'templates/meats.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.spices', {
+    url: '/spices',
+    views: {
+      'tab': {
+        templateUrl: 'templates/spices.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.baking', {
+    url: '/baking',
+    views: {
+      'tab': {
+        templateUrl: 'templates/baking.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.breakfast', {
+    url: '/breakfast',
+    views: {
+      'tab': {
+        templateUrl: 'templates/breakfast.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.snacks', {
+    url: '/snacks',
+    views: {
+      'tab': {
+        templateUrl: 'templates/snacks.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.sweets', {
+    url: '/sweets',
+    views: {
+      'tab': {
+        templateUrl: 'templates/sweets.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.grains', {
+    url: '/grains',
+    views: {
+      'tab': {
+        templateUrl: 'templates/grains.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.frozen', {
+    url: '/frozen',
+    views: {
+      'tab': {
+        templateUrl: 'templates/frozen.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.beverages', {
+    url: '/beverages',
+    views: {
+      'tab': {
+        templateUrl: 'templates/beverages.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.hygiene', {
+    url: '/hygiene',
+    views: {
+      'tab': {
+        templateUrl: 'templates/hygiene.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.household', {
+    url: '/household',
+    views: {
+      'tab': {
+        templateUrl: 'templates/household.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.other', {
+    url: '/other',
+    views: {
+      'tab': {
+        templateUrl: 'templates/other.html',
+        controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+
 
   .state('tab.pantry', {
     url: '/pantry',

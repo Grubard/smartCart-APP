@@ -1,12 +1,84 @@
 <ion-view view-title="smartCart">
-  <ion-nav-buttons side="left">
+  <ion-nav-buttons side="left" back-button-type="button-icon" back-button-icon="ion-arrow-left-c">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
+    <button class="button button-calm" ng-click="showPopup()"><i class="icon ion-plus"></i></button>
     <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
   </ion-nav-buttons>
   <ion-content has-header="true" padding="true">
-   <h1>HOME</h1>
+    <div class="home">
+      <div class="row">
+        <a class="col image" href="#/tab/necessity">
+          <p>Necessity<span class="badge badge-assertive">{{ vm.necessityAmt }}</span></p>
+        </a>
+        <a class="col image0" href="#/tab/dairy">
+          <p>Dairy<span class="badge badge-assertive">{{ vm.dairyAmt }}</span></p>
+        </a>
+      </div>
+       <div class="row">
+         <a class="col image1" href="#/tab/produce">
+           <p>Produce<span class="badge badge-assertive">{{ vm.produceAmt }}</span></p>
+         </a>
+         <a class="col image2" href="#/tab/deli">
+           <p>Deli<span class="badge badge-assertive">{{ vm.deliAmt }}</span></p>
+         </a>
+       </div>
+       <div class="row">
+         <a class="col image3" href="#/tab/meats">
+           <p>Meats<span class="badge badge-assertive">{{ vm.meatsAmt }}</span></p>
+         </a>
+         <a class="col image4" href="#/tab/spices">
+           <p>Spices<span class="badge badge-assertive">{{ vm.spicesAmt }}</span></p>
+         </a>
+       </div>
+       <div class="row">
+         <a class="col image5" href="#/tab/baking">
+           <p>Baking<span class="badge badge-assertive">{{ vm.bakingAmt }}</span></p>
+         </a>
+         <a class="col image6" href="#/tab/breakfast">
+           <p>Breakfast Items<span class="badge badge-assertive">{{ vm.breakfastAmt }}</span></p>
+         </a>
+       </div>
+       <div class="row">
+         <a class="col image7" href="#/tab/snacks">
+           <p>Snacks<span class="badge badge-assertive">{{ vm.snacksAmt }}</span></p>
+         </a>
+         <a class="col image8" href="#/tab/sweets">
+           <p>Sweets<span class="badge badge-assertive">{{ vm.sweetsAmt }}</span></p>
+         </a>
+       </div>
+       <div class="row">
+         <a class="col image9" href="#/tab/grains">
+           <p>Grains &amp; Pasta<span class="badge badge-assertive">{{ vm.grainsAmt }}</span></p>
+         </a>
+         <a class="col image10" href="#/tab/frozen">
+           <p>Frozen<span class="badge badge-assertive">{{ vm.frozenAmt }}</span></p>
+         </a>
+       </div>
+       <div class="row">
+         <a class="col image11" href="#/tab/beverages">
+           <p>Beverages<span class="badge badge-assertive">{{ vm.bevsAmt }}</span></p>
+         </a>
+         <a class="col image12" href="#/tab/hygiene">
+           <p>Hygiene<span class="badge badge-assertive">{{ vm.hygieneAmt }}</span></p>
+         </a>
+       </div>
+       <div class="last row">
+         <a class="col image13" href="#/tab/household">
+           <p>Household Items<span class="badge badge-assertive">{{ vm.householdAmt }}</span></p>
+         </a>
+         <a class="col image14" href="#/tab/other">
+           <p>Other<span class="badge badge-assertive">{{ vm.otherAmt }}</span></p>
+         </a>
+       </div>
+     </div>
+     
   </ion-content>
+  <div class="bar bar-footer goToList">
+    <button class="button button-block button-calm" ui-sref="tab.list">
+      Go To Grocery List
+    </button>
+  </div>
 </ion-view>
 

@@ -1,0 +1,37 @@
+<ion-view view-title="Snacks">
+  <ion-nav-buttons side="left" back-button-type="button-icon" back-button-icon="ion-arrow-left-c">
+    <!-- <button menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
+  </ion-nav-buttons>
+  <ion-content has-header="true" padding="true">
+    <div>
+      <ion-list>
+        <ion-item ng-repeat="item in vm.snacks" item="item" class="">
+        <h2>
+          {{ item.title }} {{item.quantity}} of {{item.preferred}}</h2>
+          <ion-option-button class="button-assertive" ng-click="delete(item)">
+            Delete
+          </ion-option-button>
+          <ion-option-button class="button-calm" ng-click="editPopup(item)">
+            Edit
+          </ion-option-button>
+          <ion-option-button class="button-balanced" ng-click="vm.addNewItem(item)">
+            Add-2-Cart
+          </ion-option-button>
+        </ion-item>
+
+      </ion-list>
+    </div>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <button class="button button-block button-positive" ui-sref="tab.list">
+      Go To Grocery List
+    </button>
+  </div>
+</ion-view>
+
+
+
