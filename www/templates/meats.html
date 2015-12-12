@@ -9,6 +9,7 @@
     <div>
       <ion-list>
         <ion-item ng-repeat="item in vm.meats" item="item" class="cap">
+        
         <h2>
           {{ item.title }} <span class="item-note">{{item.quantity}} of {{item.preferred}}</span></h2>
           <ion-option-button class="button-assertive" ng-click="delete(item)">
