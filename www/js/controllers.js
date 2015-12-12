@@ -121,65 +121,7 @@ angular.module('starter.controllers', [])
       });
     })
 
-    // PantryService.getPantryList().then( (response) => {
-
-    //   vm.pantryItems = response.data;
-    //   TransferService.transferItems(vm.pantryItems);
-    //   var items = response.data;
-    //   items.forEach(function(item) {
-  
-    //     if (item.necessity === true) {
-    //       vm.necessity.push(item);
-    //       vm.necessityAmt = vm.necessity.length;
-    //     } else if (item.category === "Produce") {
-    //       vm.produce.push(item);
-    //       vm.produceAmt = vm.produce.length;
-    //     } else if(item.category === "Deli") {
-    //       vm.deli.push(item);
-    //       vm.deliAmt = vm.deli.length;
-    //     } else if(item.category === "Meats") {
-    //       vm.meats.push(item);
-    //       vm.meatsAmt = vm.meats.length;
-    //     } else if(item.category === "Spices") {
-    //       vm.spices.push(item);
-    //       vm.spicesAmt = vm.spices.length;
-    //     } else if(item.category === "Baking") {
-    //       vm.baking.push(item);
-    //       vm.bakingAmt = vm.baking.length;
-    //     } else if(item.category === "Breakfast") {
-    //       vm.breakfast.push(item);
-    //       vm.breakfastAmt = vm.breakfast.length;
-    //     } else if(item.category === "Snacks") {
-    //       vm.snacks.push(item);
-    //       vm.snacksAmt = vm.snacks.length;
-    //     } else if(item.category === "Sweets") {
-    //       vm.sweets.push(item);
-    //       vm.sweetsAmt = vm.sweets.length;
-    //     } else if(item.category === "Grains") {
-    //       vm.grains.push(item);
-    //       vm.grainsAmt = vm.grains.length;
-    //     } else if(item.category === "Frozen") {
-    //       vm.frozen.push(item);
-    //       vm.frozenAmt = vm.frozen.length;
-    //     } else if(item.category === "Beverages") {
-    //       vm.bevs.push(item);
-    //       vm.bevsAmt = vm.bevs.length;
-    //     } else if(item.category === "Hygiene") {
-    //       vm.hygiene.push(item);
-    //       vm.hygieneAmt = vm.hygiene.length;
-    //     } else if(item.category === "Household") {
-    //       vm.household.push(item);
-    //       vm.householdAmt = vm.household.length;
-    //     } else if(item.category === "Dairy") {
-    //       vm.dairy.push(item);
-    //       vm.dairyAmt = vm.dairy.length;
-    //     } else {
-    //       vm.other.push(item);
-    //       vm.otherAmt = vm.other.length;
-    //     }
-    //   });
-      
-    // });
+    
   }
   $scope.shouldShowDelete = false;
   $scope.shouldShowReorder = false;
@@ -207,11 +149,6 @@ angular.module('starter.controllers', [])
     });
     
   };
-  
-  // $scope.moveItem = function(item, fromIndex, toIndex) {
-  //   $scope.items.splice(fromIndex, 1);
-  //   $scope.items.splice(toIndex, 0, item);
-  // };
 
   $scope.showPopup = function() {
     $scope.food = {};
@@ -262,7 +199,21 @@ angular.module('starter.controllers', [])
                     <span>Needed: </span>
                     <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{preferred.value}}" ng-model="preferred.value">                    
                     <label>{{preferred.value}}</label>
-                  </div>                  
+                  </div>
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      Unit of Measurement
+                    </div>
+                    <select ng-model="food.units">
+                      <option selected>Lb(s)</option>
+                      <option>Ouche(s)</option>
+                      <option>Gram(s)</option>  
+                      <option>Gallon(s)</option>
+                      <option>Half-Gallon(s)</option>  
+                      <option>Table-spoon(s)</option> 
+                      <option>Tea-spoon(s)</option>                      
+                    </select>
+                  </label>                 
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',
@@ -302,7 +253,8 @@ angular.module('starter.controllers', [])
       category: food.category,
       quantity: food.quantity,
       preferred: food.preferred,
-      necessity: food.necessity
+      necessity: food.necessity,
+      units: food.units,
 
     };
    
@@ -312,6 +264,7 @@ angular.module('starter.controllers', [])
       quantity: food.quantity,
       preferred: food.preferred,
       necessity: food.necessity,
+      units: food.units,
       id: food.id
     };
 
@@ -361,7 +314,21 @@ angular.module('starter.controllers', [])
                       <span>Needed: </span>
                       <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
                       <label>{{newFood.preferred}}</label>
-                    </div>                  
+                    </div>
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Unit of Measurement
+                      </div>
+                      <select ng-model="newFood.units">
+                        <option selected>Lb(s)</option>
+                        <option>Ouche(s)</option>
+                        <option>Gram(s)</option>  
+                        <option>Gallon(s)</option>
+                        <option>Half-Gallon(s)</option>  
+                        <option>Table-spoon(s)</option> 
+                        <option>Tea-spoon(s)</option>                      
+                      </select>
+                    </label>                   
                     <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
         title: 'Edit Item',
@@ -475,15 +442,11 @@ angular.module('starter.controllers', [])
   function groceryList() {   
     vm.groceryListYay = [];
 
-    // ListService.getGroceryList().then( (response) => {
-
-    //   vm.groceryListYay = response.data;
-    // });
-
     angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addListItem', 'clearListItem'], function(value) {
     
       $rootScope.$on(value, function (e, a) {
         ListService.getGroceryList().then( (response) => {
+          console.log(response);
 
           vm.groceryListYay = response.data;
         
@@ -571,7 +534,21 @@ angular.module('starter.controllers', [])
                     <span>Needed: </span>
                     <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{preferred.value}}" ng-model="preferred.value">                    
                     <label>{{preferred.value}}</label>
-                  </div>                  
+                  </div>
+                   <label class="item item-input item-select">
+                      <div class="input-label">
+                        Unit of Measurement
+                      </div>
+                      <select ng-model="food.units">
+                        <option selected>Lb(s)</option>
+                        <option>Ouche(s)</option>
+                        <option>Gram(s)</option>  
+                        <option>Gallon(s)</option>
+                        <option>Half-Gallon(s)</option>  
+                        <option>Table-spoon(s)</option> 
+                        <option>Tea-spoon(s)</option>                      
+                      </select>
+                    </label>                    
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',

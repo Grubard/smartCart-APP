@@ -75,6 +75,7 @@ angular.module('starter.services', [])
     this.category = foodItem.category;
     this.preferred = foodItem.preferred;
     this.necessity = foodItem.necessity;
+    this.units = foodItem.units;
   }
 
   function addItem (foodItem) {
@@ -103,6 +104,7 @@ angular.module('starter.services', [])
   this.addItem = addItem;
   this.getGroceryList = getGroceryList;
   this.removeFood = removeFood;
+  this.editFoodItem = editFoodItem;
 
   function Item (foodItem) {
     this.title = foodItem.title;
@@ -110,6 +112,7 @@ angular.module('starter.services', [])
     this.category = foodItem.category;
     this.preferred = foodItem.preferred;
     this.necessity = foodItem.necessity;
+    this.units= foodItem.units;
   }
 
   function addItem (foodItem) {
@@ -123,6 +126,10 @@ angular.module('starter.services', [])
 
   function removeFood (objId) {
     return $http.delete(url + '/grocery/' + objId, SERVER.CONFIG);
+  }
+  function editFoodItem (foodObj) {
+    var x = foodObj.id;
+    return $http.put(url + '/grocery/' + x, foodObj, SERVER.CONFIG);
   }
 })
 .service('AuthService', function($cookies) {

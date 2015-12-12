@@ -31,10 +31,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     var path = $location.path();
     
     if (path.indexOf('list') != -1) {
-
       $ionicNavBarDelegate.showBackButton(false);
-    }
-    else {
+    } else if (path.indexOf('home') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf('contact') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf('adduser') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
+    } else {
       $ionicNavBarDelegate.showBackButton(true);
     }
 

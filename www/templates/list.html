@@ -26,7 +26,8 @@
             <ion-list show-delete="data.showDelete">
               <ion-item ng-repeat="object in vm.groceryListYay" item="item" class="item-remove-animate item item-checkbox">
 
-                <h2 class="titles">{{ object.title }}</h2>
+                <h2 class="titles">{{ object.title }} <span>Need: {{object.preferred - object.quantity}} {{object.units}}</span></h2>
+
                 
                 <label class="checkbox">
                   <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
