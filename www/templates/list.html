@@ -23,23 +23,25 @@
             </div>
           </ion-header-bar>
           
-          <div show-delete="data.showDelete" class="list gList">
-            <ion-item ng-repeat="object in vm.groceryListYay" item="item" class="item-remove-animate item item-checkbox">
+          <ion-list show-delete="data.showDelete">
+            <div class="gList">
+              <ion-item ng-repeat="object in vm.groceryListYay" item="item" class="item item-checkbox">
 
-              <h2 class="titles">{{ object.title }} <span>Need: {{object.preferred - object.quantity}} {{object.units}}</span></h2>
+                <h2 class="titles"><span>Need {{object.preferred - object.quantity}} {{object.units}}</span> of {{ object.title }} </h2>
 
-              
-              <label class="checkbox">
-                <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
-              </label>
-               
-              <ion-delete-button class="ion-minus-circled" ng-click="vm.removeItem(object)">
-              </ion-delete-button>            
-              
-              <!-- <ion-option-button class="button-balanced">Check</ion-option-button> -->
-            </ion-item>
+                
+                <label class="checkbox">
+                  <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
+                </label>
+                 
+                <ion-delete-button class="ion-minus-circled" ng-click="vm.removeItem(object)">
+                </ion-delete-button>            
+                
+                <!-- <ion-option-button class="button-balanced">Check</ion-option-button> -->
+              </ion-item>
+            </div>
 
-          </div>
+          </ion-list>
         </div>
       </div>
     </div>
