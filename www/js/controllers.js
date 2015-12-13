@@ -6,13 +6,10 @@ angular.module('starter.controllers', [])
 
 .controller('AlertController', function($scope, $ionicModal) {
   var vm = this;
-    // Load the modal from the given template URL
     $ionicModal.fromTemplateUrl('templates/alert.html', function($ionicModal) {
       $scope.modal = $ionicModal;
     }, {
-      // Use our scope for the scope of the modal to keep it simple
       scope: $scope,
-      // The animation we want to use for the modal entrance
       animation: 'slide-in-up'
     });
 })
@@ -250,6 +247,9 @@ angular.module('starter.controllers', [])
       ]
     });
     myPopup.then(function(res) {
+      if (res === undefined) {
+        return;
+      } else {
       PantryService.addItem(res).success((res2) => {      
         
         $rootScope.$broadcast('addPantryItem');
@@ -263,6 +263,7 @@ angular.module('starter.controllers', [])
               template: 'Sorry for the inconvenience. Please try again.'
           });
         });
+      }
     });
   };
 
@@ -376,20 +377,25 @@ angular.module('starter.controllers', [])
     }); 
 
     myPopup.then(function(res) {
-      console.log($scope.newFood.indexOf('id'));
-      PantryService.editFoodItem(res).success((res2) => {
+      
+      if (res === undefined) {
+        return;
+      } else {
+        PantryService.editFoodItem(res).success((res2) => {
 
-        $rootScope.$broadcast('editPantryItem');
-        var alertPopup = $ionicPopup.alert({
-            title: 'Success!',
-            template: 'Item was successfully edited!'
+          $rootScope.$broadcast('editPantryItem');
+          var alertPopup = $ionicPopup.alert({
+              title: 'Success!',
+              template: 'Item was successfully edited!'
+          });
+        }).error(function(data) {
+          var alertPopup = $ionicPopup.alert({
+              title: 'Editing item failed',
+              template: 'Sorry for the inconvenience. Please try again.'
+          });
         });
-      }).error(function(data) {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Editing item failed',
-            template: 'Sorry for the inconvenience. Please try again.'
-        });
-      });
+        
+      }
     });
   };
 
@@ -669,6 +675,9 @@ angular.module('starter.controllers', [])
       ]
     });
     myPopup.then(function(res) {
+      if (res === undefined) {
+        return;
+      } else {
       ListService.addItem(res).success((res2) => {        
         $rootScope.$broadcast('addListItem');
         var alertPopup = $ionicPopup.alert({
@@ -681,6 +690,7 @@ angular.module('starter.controllers', [])
             template: 'Sorry for the inconvenience. Please try again.'
           });
         });
+      }
     });
   };
 
