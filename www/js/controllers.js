@@ -39,7 +39,7 @@ angular.module('starter.controllers', [])
   function pantryList() {
     angular.forEach(['$stateChangeSuccess', 'addPantryItem', 'deletePantryItem', 'editPantryItem'] , function(value) {
       $scope.$on(value, function (e, a) {
-        PantryService.getPantryList().then( (response) => {
+        PantryService.getPantryList().then(function (response) {
 
           vm.necessity = [];
           vm.produce = [];
@@ -211,19 +211,8 @@ angular.module('starter.controllers', [])
                     <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{preferred.value}}" ng-model="preferred.value">                    
                     <label>{{preferred.value}}</label>
                   </div>
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      Unit of Measurement
-                    </div>
-                    <select ng-model="food.units">
-                      <option selected>Lb(s)</option>
-                      <option>Ouche(s)</option>
-                      <option>Gram(s)</option>  
-                      <option>Gallon(s)</option>
-                      <option>Half-Gallon(s)</option>  
-                      <option>Table-spoon(s)</option> 
-                      <option>Tea-spoon(s)</option>                      
-                    </select>
+                  <label class="item item-input">
+                    <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
                   </label>                 
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
@@ -338,20 +327,9 @@ angular.module('starter.controllers', [])
                       <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
                       <label>{{newFood.preferred}}</label>
                     </div>
-                    <label class="item item-input item-select">
-                      <div class="input-label">
-                        Unit of Measurement
-                      </div>
-                      <select ng-model="newFood.units">
-                        <option selected>Lb(s)</option>
-                        <option>Ouche(s)</option>
-                        <option>Gram(s)</option>  
-                        <option>Gallon(s)</option>
-                        <option>Half-Gallon(s)</option>  
-                        <option>Table-spoon(s)</option> 
-                        <option>Tea-spoon(s)</option>                      
-                      </select>
-                    </label>                   
+                    <label class="item item-input">
+                      <input type="text" placeholder="Unit of Measurement" ng-model="newFood.units">
+                    </label>                  
                     <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
         title: 'Edit Item',
@@ -543,7 +521,7 @@ angular.module('starter.controllers', [])
       $rootScope.$broadcast('deleteListItem');
       
     }).error(function(data) {
-      // Do something on error
+      
         var alertPopup = $ionicPopup.alert({
             title: 'Deleting item(s) from grocery list failed!',
             template: 'Sorry for the inconvenience. Please try again.'
@@ -552,21 +530,29 @@ angular.module('starter.controllers', [])
   }
 
   function addItemsToPantry() {
-     
+    
     vm.purchased.map(function(x){
       
       $http.post(url + '/edible', x, SERVER.CONFIG).success((res)=>{
         ListService.removeFood(x.id).success(() => {
-          $rootScope.$broadcast('addToPantry');
-          var alertPopup = $ionicPopup.alert({
+          var a;
+          console.log(a);
+          if (a === undefined) {
+            console.log(a);
+            $rootScope.$broadcast('addToPantry');
+            var alertPopup = $ionicPopup.alert({
               title: 'Success!',
               template: 'Item(s) successfully added to SMARTCART!'
-          });
+            });      
+            console.log(a);      
+            return !a;
+          }
+            console.log(a);
         }).error(function(data) {
 
           var alertPopup = $ionicPopup.alert({
-              title: 'Adding item(s) to pantry failed.',
-              template: 'Sorry for the inconvenience. Please try again.'
+            title: 'Adding item(s) to pantry failed.',
+            template: 'Sorry for the inconvenience. Please try again.'
           });
         });   
       });
@@ -592,14 +578,14 @@ angular.module('starter.controllers', [])
   $scope.showPopup = function() {
     $scope.food = {};
     $scope.quantity = {
-        min:'0',
-        max:'20000',
-        value:'0'
+      min:'0',
+      max:'20000',
+      value:'0'
     }
     $scope.preferred = {
-        min:'0',
-        max:'20000',
-        value:'0'
+      min:'0',
+      max:'20000',
+      value:'0'
     }
 
 
@@ -638,21 +624,10 @@ angular.module('starter.controllers', [])
                     <span>Needed: </span>
                     <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{preferred.value}}" ng-model="preferred.value">                    
                     <label>{{preferred.value}}</label>
-                  </div>
-                   <label class="item item-input item-select">
-                      <div class="input-label">
-                        Unit of Measurement
-                      </div>
-                      <select ng-model="food.units">
-                        <option selected>Lb(s)</option>
-                        <option>Ouche(s)</option>
-                        <option>Gram(s)</option>  
-                        <option>Gallon(s)</option>
-                        <option>Half-Gallon(s)</option>  
-                        <option>Table-spoon(s)</option> 
-                        <option>Tea-spoon(s)</option>                      
-                      </select>
-                    </label>                    
+                  </div> 
+                  <label class="item item-input">
+                    <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
+                  </label>                 
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',

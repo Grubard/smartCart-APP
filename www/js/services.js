@@ -28,7 +28,7 @@ angular.module('starter.services', [])
   this.transferItems = transferItems;
   
   function transferItems(pantry){
-    $http.get(url + '/grocery' , SERVER.CONFIG).then((res)=>{
+    $http.get(url + '/grocery' , SERVER.CONFIG).then(function(res) {
 
       var groceries = res.data;
       var grocNames = [];
