@@ -1,7 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('UserHomeController', function($scope) {
-  
+.controller('LandingController', function($scope, $ionicHistory) {
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
 })
 
 .controller('AlertController', function($scope, $ionicModal) {

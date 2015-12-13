@@ -29,6 +29,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       $ionicNavBarDelegate.showBackButton(false);
     } else if (path.indexOf('adduser') != -1) {
       $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf('signup') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf('login') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
     } else {
       $ionicNavBarDelegate.showBackButton(true);
     }
@@ -40,7 +44,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
     if (toState.views.authenticate && x === false ){
       
-      $state.go("tab.login");
+      $state.go("land.one");
       event.preventDefault();
       
     }  
@@ -58,7 +62,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
-
   .state('tab.home', {
     url: '/home',
     views: {
@@ -239,11 +242,56 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     authenticate: true
     }
   })
+  .state('land', {
+    url: '/land',
+    abstract: true,
+    templateUrl: 'templates/land.html'
+  })
+  .state('land.one', {
+    url: '/one',
+    views: {
+      'land': {
+        templateUrl: 'templates/landing1.html',
+        controller: 'LandingController'
+      },
+    authenticate: false
+    }
+  })
+  .state('land.two', {
+    url: '/two',
+    views: {
+      'land': {
+        templateUrl: 'templates/landing2.html',
+        controller: 'LandingController'
+      },
+    authenticate: false
+    }
+  })
+  .state('land.three', {
+    url: '/three',
+    views: {
+      'land': {
+        templateUrl: 'templates/landing3.html',
+        controller: 'LandingController'
+      },
+    authenticate: false
+    }
+  })
   .state('tab.login', {
     url: '/login',
     views: {
       'tab': {
         templateUrl: 'templates/login.html',
+        controller: 'LoginController as vm'
+      },
+    authenticate: false
+    }
+  })
+  .state('tab.signup', {
+    url: '/signup',
+    views: {
+      'tab': {
+        templateUrl: 'templates/signup.html',
         controller: 'LoginController as vm'
       },
     authenticate: false
@@ -298,6 +346,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   });
 
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/land/one');
 
 });
