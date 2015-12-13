@@ -23,6 +23,34 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 @import "www/lib/fontawesome/scss/font-awesome";
 
+// @-webkit-keyframes slideIn {
+//   0% {
+//     left: -100%;
+//   }
+//   100% {
+//     left: 0;
+//   }
+// }
+
+// @-webkit-keyframes slideInSmooth {
+//   0% {
+//     -webkit-transform: translate3d(-100%,0,0);
+//   }
+//   100% {
+//     -webkit-transform: translate3d(0,0,0);
+//   }
+// }
+
+
+// .slide-in {
+//    -webkit-animation: slideInSmooth ease-in 1; 
+//   animation: slideInSmooth ease-in 1;
+//   -webkit-animation-fill-mode: forwards;
+//   animation-fill-mode: forwards;
+//   -webkit-animation-duration: 750ms;
+//   animation-duration: 750ms;
+// }
+
 .row {
   padding: 0;
 }
@@ -46,31 +74,11 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   margin-bottom: 3em;
 }
 
-#groceryList {
-  // margin-top: 3em;
-}
-
-h2.titles {
-  // margin-left: 3em;
-}
-
 .padding {
   padding: 0;
 }
 .home {
-  margin-bottom: 2.9em;
-
-  .row {
-    
-    .col {
-      // border: 1px solid;
-      margin-bottom: 5px;
-      padding: 3.08em;
-    }
-  }
-  .last {
-    margin-bottom: 0;
-  }
+  margin-bottom: 3em;
 }
 
 .bar.bar-footer {
@@ -196,10 +204,10 @@ h2.titles {
   background-repeat: no-repeat;
 }
 
-.goToList {
-  background-color: #26CF59;
+// .goToList {
+//   background-color: white;
   
-}
+// }
 
 .cap {
   text-transform: uppercase;
@@ -211,7 +219,7 @@ h2.titles {
   text-align: center;
 }
 .button.button.button-block.goBtn {
-  background: transparent;
+  // background: white;
   border: 3px solid #00C0F5;
   color: white;
   border-radius: .5em;
@@ -219,7 +227,11 @@ h2.titles {
   line-height: 1px;
 
 }
-.item-left-editable {
+// .item-left-editable {
+//   margin-top: 3em;
+// }
+
+.gList {
   margin-top: 3em;
 }
 

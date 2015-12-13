@@ -9,7 +9,7 @@
     <div id="groceryList" class="lists row">
       <div class="row list2">
         <div class="col col-100">
-          <ion-header-bar class="bar-positive">
+          <ion-header-bar class="bar-calm">
             <div class="buttons">
               <button class="button button-icon icon ion-ios-minus-outline"
                 ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
@@ -23,23 +23,23 @@
             </div>
           </ion-header-bar>
           
-            <ion-list show-delete="data.showDelete">
-              <ion-item ng-repeat="object in vm.groceryListYay" item="item" class="item-remove-animate item item-checkbox">
+          <div show-delete="data.showDelete" class="list gList">
+            <ion-item ng-repeat="object in vm.groceryListYay" item="item" class="item-remove-animate item item-checkbox">
 
-                <h2 class="titles">{{ object.title }} <span>Need: {{object.preferred - object.quantity}} {{object.units}}</span></h2>
+              <h2 class="titles">{{ object.title }} <span>Need: {{object.preferred - object.quantity}} {{object.units}}</span></h2>
 
-                
-                <label class="checkbox">
-                  <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
-                </label>
-                 
-                <ion-delete-button class="ion-minus-circled" ng-click="vm.removeItem(object)">
-                </ion-delete-button>            
-                
-                <!-- <ion-option-button class="button-balanced">Check</ion-option-button> -->
-              </ion-item>
+              
+              <label class="checkbox">
+                <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
+              </label>
+               
+              <ion-delete-button class="ion-minus-circled" ng-click="vm.removeItem(object)">
+              </ion-delete-button>            
+              
+              <!-- <ion-option-button class="button-balanced">Check</ion-option-button> -->
+            </ion-item>
 
-            </ion-list>
+          </div>
         </div>
       </div>
     </div>
