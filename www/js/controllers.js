@@ -127,7 +127,7 @@ angular.module('starter.controllers', [])
   };
 
   function addNewItem (food) {
-    ListService.addItem(food).success(() => {
+    ListService.addItem(food).success(function () {
       $rootScope.$broadcast('addToList');
       var alertPopup = $ionicPopup.alert({
           title: 'Success!',
@@ -145,7 +145,7 @@ angular.module('starter.controllers', [])
 
   $scope.delete = function(item) {
     
-    PantryService.removeFood(item.id).success(() => {
+    PantryService.removeFood(item.id).success(function () {
       $rootScope.$broadcast('deletePantryItem');
       var alertPopup = $ionicPopup.alert({
           title: 'Success!',
@@ -241,7 +241,7 @@ angular.module('starter.controllers', [])
       if (res === undefined) {
         return;
       } else {
-      PantryService.addItem(res).success((res2) => {      
+      PantryService.addItem(res).success(function (res2)  {      
         
         $rootScope.$broadcast('addPantryItem');
         var alertPopup = $ionicPopup.alert({
@@ -361,7 +361,7 @@ angular.module('starter.controllers', [])
       if (res === undefined) {
         return;
       } else {
-        PantryService.editFoodItem(res).success((res2) => {
+        PantryService.editFoodItem(res).success(function (res2) {
 
           $rootScope.$broadcast('editPantryItem');
           var alertPopup = $ionicPopup.alert({
@@ -401,11 +401,11 @@ angular.module('starter.controllers', [])
   vm.signUp = function(newUser){
 
     $scope.show($ionicLoading);
-    $http.post(url+'/signup/', newUser).success((res)=>{
+    $http.post(url+'/signup/', newUser).success(function (res){
       $cookies.put('auth_token', res.user.access_token);
       $cookies.put('username', res.user.username);
       $state.go('tab.create');
-    }).error( (res) => {
+    }).error( function (res) {
       var alertPopup = $ionicPopup.alert({
         title: 'Account creation failed!',
         template: 'Sorry for the inconvenience. Please try again.'
@@ -426,7 +426,7 @@ angular.module('starter.controllers', [])
       var id = res.house.id;
       $cookies.put('house_id', id, {expires: expireDate}); 
       $state.go('tab.add');
-    }).error( (res) => {
+    }).error( function (res) {
       var alertPopup = $ionicPopup.alert({
         title: 'SmartCart creation failed!',
         template: 'Sorry for the inconvenience. Please try again.'
@@ -440,7 +440,7 @@ angular.module('starter.controllers', [])
   vm.login = function(user){
     $scope.show($ionicLoading);
     
-    $http.post(url+'/login', user).success((res)=>{
+    $http.post(url+'/login', user).success(function (res){
       $scope.hide($ionicLoading);
 
       
@@ -450,7 +450,7 @@ angular.module('starter.controllers', [])
       $cookies.put('username', res.user.username, {expires: expireDate});
       $state.go('tab.home');
 
-    }).error( (res) => {
+    }).error( function (res) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
         template: 'Your username or password was incorrect. Please try again.'
@@ -506,7 +506,7 @@ angular.module('starter.controllers', [])
     angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addListItem', 'clearListItem'], function(value) {
     
       $scope.$on(value, function (e, a) {
-        ListService.getGroceryList().then( (response) => {
+        ListService.getGroceryList().then( function (response) {
           
 
           vm.groceryListYay = response.data;
@@ -517,7 +517,7 @@ angular.module('starter.controllers', [])
   }
   function removeItem (object) {
      
-    ListService.removeFood(object.id).success(() => {
+    ListService.removeFood(object.id).success(function () {
       $rootScope.$broadcast('deleteListItem');
       
     }).error(function(data) {
@@ -533,8 +533,8 @@ angular.module('starter.controllers', [])
     
     vm.purchased.map(function(x){
       
-      $http.post(url + '/edible', x, SERVER.CONFIG).success((res)=>{
-        ListService.removeFood(x.id).success(() => {
+      $http.post(url + '/edible', x, SERVER.CONFIG).success(function (res) {
+        ListService.removeFood(x.id).success(function () {
           var a;
           console.log(a);
           if (a === undefined) {
@@ -655,7 +655,7 @@ angular.module('starter.controllers', [])
       if (res === undefined) {
         return;
       } else {
-      ListService.addItem(res).success((res2) => {        
+      ListService.addItem(res).success(function (res2) {        
         $rootScope.$broadcast('addListItem');
         var alertPopup = $ionicPopup.alert({
           title: 'Success',

@@ -11317,3 +11317,7 @@ a.button {
 
 .gList {
   margin-top: 3em; }
+
+.slider {
+  height: 100%;
+  width: 100%; }

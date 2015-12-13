@@ -44,7 +44,7 @@ angular.module('starter.services', [])
           var yay = $.inArray(panItem.title, grocNames);
           
           if(yay === -1){
-            $http.post(url + '/grocery', panItem, SERVER.CONFIG).then((res)=>{
+            $http.post(url + '/grocery', panItem, SERVER.CONFIG).then(function (res) {
 
             });
           }
