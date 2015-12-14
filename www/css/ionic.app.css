@@ -11425,3 +11425,22 @@ a.button {
     margin-top: 0em;
     margin-bottom: -1em;
     margin-right: 1.8em; }
+
+.land3 {
+  text-align: center; }
+  .land3 img {
+    width: 90%;
+    margin-top: 1em;
+    margin-left: -.5em; }
+  .land3 h2 {
+    color: white;
+    padding: 1em; }
+  .land3 .cOne {
+    color: #6D3177; }
+  .land3 .cTwo {
+    color: #D61202; }
+  .land3 .cThree {
+    color: #FF7700; }
+  .land3 a {
+    width: 50%;
+    font-size: 1.7em; }

@@ -331,3 +331,29 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
     margin-right: 1.8em
   }
 }
+.land3 {
+  // width: 100%;
+  text-align: center;
+  img {
+    width: 90%;
+    margin-top: 1em;
+    margin-left: -.5em;
+  }
+  h2 {
+    color: white;
+    padding: 1em;
+  }
+  .cOne {
+    color: #6D3177; 
+  }
+  .cTwo {
+    color: #D61202;
+  }
+  .cThree {
+    color: #FF7700;
+  }
+  a {
+    width: 50%;
+    font-size: 1.7em;
+  }
+}
