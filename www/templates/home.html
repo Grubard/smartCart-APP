@@ -10,15 +10,30 @@
     <div class="home">
       <a class="item item-avatar" href="#/tab/necessity">
         <img src="./img/other.jpg">
-        <h2>Necessity</h2>
+        <h2>Favorites</h2>
         <p>Weekly grocery list items</p>
         <p><span class="badge badge-assertive">{{ vm.necessityAmt }}</span></p>       
       </a>
-      <a class="item item-avatar" href="#/tab/produce">
-        <img src="./img/produce.jpg">
-        <h2>Produce</h2>
-        <p>Veggies, fruits, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.produceAmt }}</span></p>
+      
+      <a class="item item-avatar" href="#/tab/baking">
+        <img src="./img/baking.jpg">
+        <h2>Baking</h2>
+        <p>Flour, yeast, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.bakingAmt }}</span></p>
+        
+      </a>
+      <a class="item item-avatar" href="#/tab/beverages">
+        <img src="./img/beverages.jpg">
+        <h2>Beverages</h2>
+        <p>Soft drinks, tea, coffee, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.beveragesAmt }}</span></p>
+        
+      </a>
+      <a class="item item-avatar" href="#/tab/breakfast">
+        <img src="./img/breakfast.jpg">
+        <h2>Breakfast Items</h2>
+        <p>Pancake mix, syrup, eggs, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.breakfastAmt }}</span></p>
         
       </a>
       <a class="item item-avatar" href="#/tab/dairy">
@@ -35,46 +50,11 @@
         <p><span class="badge badge-assertive">{{ vm.deliAmt }}</span></p>
         
       </a>
-      <a class="item item-avatar" href="#/tab/meats">
-        <img src="./img/meats.jpg">
-        <h2>Meats</h2>
-        <p>Bacon, chicken, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.meatsAmt }}</span></p>
-        
-      </a>
-      <a class="item item-avatar" href="#/tab/spices">
-        <img src="./img/spices.jpg">
-        <h2>Spices</h2>
-        <p>(Spices go here)</p>
-        <p><span class="badge badge-assertive">{{ vm.spicesAmt }}</span></p>
-        
-      </a>
-      <a class="item item-avatar" href="#/tab/baking">
-        <img src="./img/baking.jpg">
-        <h2>Baking</h2>
-        <p>Flour, yeast, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.bakingAmt }}</span></p>
-        
-      </a>
-      <a class="item item-avatar" href="#/tab/breakfast">
-        <img src="./img/breakfast.jpg">
-        <h2>Breakfast Items</h2>
-        <p>Pancake mix, syrup, eggs, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.breakfastAmt }}</span></p>
-        
-      </a>
-      <a class="item item-avatar" href="#/tab/snacks">
-        <img src="./img/snacks.jpg">
-        <h2>Snacks</h2>
-        <p>Popcorn, chips, dips, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.snacksAmt }}</span></p>
-        
-      </a>
-      <a class="item item-avatar" href="#/tab/sweets">
-        <img src="./img/sweets.jpg">
-        <h2>Sweets</h2>
-        <p>Candy, chocolate, popsicles, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.sweetsAmt }}</span></p>
+      <a class="item item-avatar" href="#/tab/frozen">
+        <img src="./img/frozen.jpg">
+        <h2>Frozen Foods</h2>
+        <p>Frozen veggies, meats, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.frozenAmt }}</span></p>
         
       </a>
       <a class="item item-avatar" href="#/tab/grains">
@@ -84,18 +64,11 @@
         <p><span class="badge badge-assertive">{{ vm.grainsAmt }}</span></p>
         
       </a>
-      <a class="item item-avatar" href="#/tab/frozen">
-        <img src="./img/frozen.jpg">
-        <h2>Frozen Foods</h2>
-        <p>Frozen veggies, meats, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.frozenAmt }}</span></p>
-        
-      </a>
-      <a class="item item-avatar" href="#/tab/beverages">
-        <img src="./img/beverages.jpg">
-        <h2>Beverages</h2>
-        <p>Soft drinks, tea, coffee, etc...</p>
-        <p><span class="badge badge-assertive">{{ vm.beveragesAmt }}</span></p>
+      <a class="item item-avatar" href="#/tab/household">
+        <img src="./img/household.jpg">
+        <h2>Household Items</h2>
+        <p>Bleech, cleaners, rags, etc...</p>
+        <p><span class="badge badge-assertive">{{ householdAmt }}</span></p>
         
       </a>
       <a class="item item-avatar" href="#/tab/hygiene">
@@ -105,11 +78,11 @@
         <p><span class="badge badge-assertive">{{ vm.hygieneAmt }}</span></p>
         
       </a>
-      <a class="item item-avatar" href="#/tab/household">
-        <img src="./img/household.jpg">
-        <h2>Household Items</h2>
-        <p>Bleech, cleaners, rags, etc...</p>
-        <p><span class="badge badge-assertive">{{ householdAmt }}</span></p>
+      <a class="item item-avatar" href="#/tab/meats">
+        <img src="./img/meats.jpg">
+        <h2>Meats</h2>
+        <p>Bacon, chicken, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.meatsAmt }}</span></p>
         
       </a>
       <a class="item item-avatar" href="#/tab/other">
@@ -119,6 +92,35 @@
         <p><span class="badge badge-assertive">{{ vm.otherAmt }}</span></p>
         
       </a>
+      <a class="item item-avatar" href="#/tab/produce">
+        <img src="./img/produce.jpg">
+        <h2>Produce</h2>
+        <p>Veggies, fruits, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.produceAmt }}</span></p>
+        
+      </a>
+      <a class="item item-avatar" href="#/tab/snacks">
+        <img src="./img/snacks.jpg">
+        <h2>Snacks</h2>
+        <p>Popcorn, chips, dips, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.snacksAmt }}</span></p>
+        
+      </a>
+      <a class="item item-avatar" href="#/tab/spices">
+        <img src="./img/spices.jpg">
+        <h2>Spices</h2>
+        <p>Salt, pepper, rubs, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.spicesAmt }}</span></p>
+        
+      </a>
+      <a class="item item-avatar" href="#/tab/sweets">
+        <img src="./img/sweets.jpg">
+        <h2>Sweets</h2>
+        <p>Candy, chocolate, popsicles, etc...</p>
+        <p><span class="badge badge-assertive">{{ vm.sweetsAmt }}</span></p>
+        
+      </a>
+      
     </div>
      
   </ion-content>

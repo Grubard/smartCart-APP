@@ -443,7 +443,6 @@ angular.module('starter.controllers', [])
     $http.post(url+'/login', user).success(function (res){
       $scope.hide($ionicLoading);
 
-      
       var expireDate = new Date();
       expireDate.setDate(expireDate.getDate() + 7);
       $cookies.put('auth_token', res.user.access_token, {expires: expireDate});
@@ -471,10 +470,8 @@ angular.module('starter.controllers', [])
   var token = $cookies.get('auth_token');
   SERVER.CONFIG.headers['Access-Token'] = token;
   vm.addItemsToPantry = addItemsToPantry;
-  // vm.clearThese = clearThese;
 
   vm.removeItem = removeItem;
-  // vm.addNewItem = addNewItem;
   vm.groceryList = groceryList;
   vm.purchased = [];
 
@@ -482,28 +479,11 @@ angular.module('starter.controllers', [])
     showDelete: false
   };
 
-  // function addNewItem (food) {
-  //   $scope.show($ionicLoading);
-  //   ListService.addItem(food).success(() => {
-  //     $rootScope.$broadcast('addToList');
-      
-  //   }).error(function(data) {
-  //     // Do something on error
-  //       var alertPopup = $ionicPopup.alert({
-  //           title: 'Adding item Failed!',
-  //           template: 'Sorry for the inconvenience. Please try again.'
-  //       });
-  //   }).finally(function($ionicLoading) { 
-  //     // On both cases hide the loading
-  //     $scope.hide($ionicLoading);  
-  //   });
-  // }
-
   groceryList();
   function groceryList() {   
     vm.groceryListYay = [];
 
-    angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addListItem', 'clearListItem'], function(value) {
+    angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addListItem', 'clearListItem', 'editListItem'], function(value) {
     
       $scope.$on(value, function (e, a) {
         ListService.getGroceryList().then( function (response) {
@@ -559,21 +539,6 @@ angular.module('starter.controllers', [])
     });  
     vm.purchased = [];     
   }
-  
-  // function clearThese() {
- 
-  //   vm.purchased.map(function(x){
-  //     ListService.removeFood(x.id).success(() => {
-  //       $rootScope.$broadcast('clearListItem');
-        
-  //     }).error(function(data) {
-  //         var alertPopup = $ionicPopup.alert({
-  //             title: 'Login failed!',
-  //             template: 'Please check your credentials!'
-  //         });
-  //     });
-  //   });
-  // }
 
   $scope.showPopup = function() {
     $scope.food = {};
@@ -667,6 +632,126 @@ angular.module('starter.controllers', [])
             template: 'Sorry for the inconvenience. Please try again.'
           });
         });
+      }
+    });
+  };
+  $scope.editPopup = function(food) {
+    
+    $scope.food = {
+      title: food.title,
+      category: food.category,
+      quantity: food.quantity,
+      preferred: food.preferred,
+      necessity: food.necessity,
+      units: food.units,
+
+    };
+   
+    $scope.newFood = {
+      title: food.title,
+      category: food.category,
+      quantity: food.quantity,
+      preferred: food.preferred,
+      necessity: food.necessity,
+      units: food.units,
+      id: food.id
+    };
+
+    $scope.quantity= {
+        min:'0',
+        max:'20000',
+        value: food.quantity
+    };
+    $scope.preferred= {
+        min:'0',
+        max:'20000',
+        value: food.preferred
+    };
+
+    var myPopup = $ionicPopup.show({
+        template: `<form class="list">
+                   <label class="item item-input">
+                      <input type="text" placeholder="Item Name" value="{{food.title}}" ng-model="newFood.title">
+                    </label>
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Category
+                      </div>
+                      <select ng-model="newFood.category" selected="{{food.category}}">
+                        <option selected>Produce</option>
+                        <option>Dairy</option>
+                        <option>Deli</option>
+                        <option>Meats</option>
+                        <option>Spices</option>
+                        <option>Baking</option>
+                        <option>Breakfast</option>
+                        <option>Snacks</option>
+                        <option>Sweets</option>
+                        <option>Grains</option>
+                        <option>Beverages</option>
+                        <option>Hygiene</option>
+                        <option>House Supplies</option>
+                        <option>Other</option>
+                      </select>
+                    </label>
+                    <div class="item range range-positive">
+                      <span>On Hand: </span>
+                      <input type="range" name="volume" min="{{quantity.min}}" max="10" value="{{food.quantity}}" ng-model="newFood.quantity">                    
+                      <label>{{newFood.quantity}}</label>
+                    </div>
+                    <div class="item range range-positive">
+                      <span>Needed: </span>
+                      <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
+                      <label>{{newFood.preferred}}</label>
+                    </div>
+                    <label class="item item-input">
+                      <input type="text" placeholder="Unit of Measurement" ng-model="newFood.units">
+                    </label>                  
+                    <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
+                  </form>`,
+        title: 'Edit Item',
+        subTitle: 'Fill out each input and press save!',
+        scope: $scope,
+        buttons: [
+          { text: 'Cancel'},
+          {
+            text: '<b>Save</b>',
+            type: 'button-calm',
+            onTap: function(e) {
+              // $scope.newFood.quantity = $scope.quantity.value;
+              // $scope.newFood.preferred = $scope.preferred.value; 
+              // console.log($scope.newFood);
+              if (!$scope.newFood.title || !$scope.newFood.category) {
+                e.preventDefault();
+              } else {
+                
+                return $scope.newFood;              
+              }
+              
+            }
+          }
+        ]
+    }); 
+
+    myPopup.then(function(res) {
+      
+      if (res === undefined) {
+        return;
+      } else {
+        ListService.editFoodItem(res).success(function (res2) {
+
+          $rootScope.$broadcast('editListItem');
+          var alertPopup = $ionicPopup.alert({
+              title: 'Success!',
+              template: 'Item was successfully edited!'
+          });
+        }).error(function(data) {
+          var alertPopup = $ionicPopup.alert({
+              title: 'Editing item failed',
+              template: 'Sorry for the inconvenience. Please try again.'
+          });
+        });
+        
       }
     });
   };

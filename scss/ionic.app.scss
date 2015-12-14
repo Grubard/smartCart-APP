@@ -215,7 +215,7 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 }
 .howto {
   font-style: italic;
-  font-size: .8em;
+  font-size: 1em;
   text-align: center;
 }
 .button.button.button-block.goBtn {
@@ -250,5 +250,32 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 }
 .ion-ios-arrow-back {
   font-size: 2.1em;
+}
+.ion-ios-home {
+  font-size: 1.7em;
+  color: #00C0F5;
+  margin-right: .3em;
+  
+}
+.ion-ios-people {
+  font-size: 1.7em;
+  color: #00C0F5;
+  margin-right: .3em;
+  
+}
+.ion-email {
+  font-size: 1.7em;
+  color: #00C0F5;
+  margin-right: .3em;
+  
+}
+.ion-edit {
+  font-size: 1.7em;
+}
+.ion-trash-a {
+  font-size: 2em;
+}
+.ion-ios-redo {
+  font-size: 2.2em;
 }
 

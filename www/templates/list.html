@@ -14,8 +14,8 @@
               <button class="button button-icon icon ion-plus-circled" ng-click="showPopup()"><span>Add</span></button>
             </div>
             <div class="buttons pull-right">
-              <button class="button button-icon icon ion-paper-airplane" ng-click="vm.addItemsToPantry()">
-                  To Pantry
+              <button class="button button-icon icon ion-social-usd" ng-click="vm.addItemsToPantry()">
+                  Purchased
               </button>
             </div>
           </ion-header-bar>
@@ -33,7 +33,7 @@
                  
                 <ion-option-button class="button-assertive ion-trash-a" ng-click="vm.removeItem(object)">
                 </ion-option-button>
-                <ion-option-button class="button-calm ion-edit" ng-click="showPopup()">
+                <ion-option-button class="button-calm ion-edit" ng-click="editPopup(object)">
                 </ion-option-button>            
                
               </ion-item>

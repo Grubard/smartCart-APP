@@ -1,24 +1,21 @@
 <ion-view view-title="Dairy">
-  <ion-nav-buttons side="left" back-button-type="button-icon" back-button-icon="ion-arrow-left-c">
+  <!-- <ion-nav-buttons side="left" back-button-type="button-icon ion-ios-arrow-back" back-button-icon="ion-ios-arrow-back"> -->
     <!-- <button menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
+    <button class="button button-icon icon ion-clipboard" ng-controller="AlertController" ng-click="modal.show()"></button>
   </ion-nav-buttons>
-  <ion-content has-header="true" padding="true">
+  <ion-content>
     <div>
       <ion-list>
         <ion-item ng-repeat="item in vm.dairy" item="item" class="cap">
         <h2>
           {{ item.title }} <span class="item-note">{{item.quantity}} of {{item.preferred}}</span></h2>
-          <ion-option-button class="button-assertive" ng-click="delete(item)">
-            Delete
+          <ion-option-button class="button-assertive ion-trash-a" ng-click="delete(item)">
           </ion-option-button>
-          <ion-option-button class="button-calm" ng-click="editPopup(item)">
-            Edit
+          <ion-option-button class="button-calm ion-edit" ng-click="editPopup(item)">
           </ion-option-button>
-          <ion-option-button class="button-balanced" ng-click="vm.addNewItem(item)">
-            Add-2-Cart
+          <ion-option-button class="button-balanced ion-ios-redo" ng-click="vm.addNewItem(item)">
           </ion-option-button>
         </ion-item>
 
