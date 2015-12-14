@@ -54,7 +54,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  $ionicConfigProvider.views.transition('none');
+  $ionicConfigProvider.backButton.previousTitleText(false).text('');
+  $ionicConfigProvider.views.maxCache(2);
 
   $stateProvider
   .state('tab', {
@@ -252,26 +253,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'land': {
         templateUrl: 'templates/landing1.html',
-        controller: 'LandingController'
-      },
-    authenticate: false
-    }
-  })
-  .state('land.two', {
-    url: '/two',
-    views: {
-      'land': {
-        templateUrl: 'templates/landing2.html',
-        controller: 'LandingController'
-      },
-    authenticate: false
-    }
-  })
-  .state('land.three', {
-    url: '/three',
-    views: {
-      'land': {
-        templateUrl: 'templates/landing3.html',
         controller: 'LandingController'
       },
     authenticate: false

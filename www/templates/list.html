@@ -3,22 +3,19 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-ios-bell" ng-controller="AlertController" ng-click="modal.show()"></button>
+    <button class="button button-icon icon ion-clipboard" ng-controller="AlertController" ng-click="modal.show()"></button>
   </ion-nav-buttons>
   <ion-content has-header="true" padding="true">
     <div id="groceryList" class="lists row">
       <div class="row list2">
         <div class="col col-100">
-          <ion-header-bar class="bar-calm">
+          <ion-header-bar class="bar-calm listBar">
             <div class="buttons">
-              <button class="button button-icon icon ion-ios-minus-outline"
-                ng-click="data.showDelete = !data.showDelete; data.showReorder = false"></button>
-                <button class="button button-icon icon ion-ios-plus-outline" ng-click="showPopup()"></button>
+              <button class="button button-icon icon ion-plus-circled" ng-click="showPopup()"><span>Add</span></button>
             </div>
-            <h1 class="title">Checklist</h1>
-            <div class="buttons">
-              <button class="button" ng-click="vm.addItemsToPantry()">
-                  Send To Pantry
+            <div class="buttons pull-right">
+              <button class="button button-icon icon ion-paper-airplane" ng-click="vm.addItemsToPantry()">
+                  To Pantry
               </button>
             </div>
           </ion-header-bar>
@@ -34,10 +31,11 @@
                   <input type="checkbox" checklist-model="vm.purchased" checklist-value="object"> 
                 </label>
                  
-                <ion-delete-button class="ion-minus-circled" ng-click="vm.removeItem(object)">
-                </ion-delete-button>            
-                
-                <!-- <ion-option-button class="button-balanced">Check</ion-option-button> -->
+                <ion-option-button class="button-assertive ion-trash-a" ng-click="vm.removeItem(object)">
+                </ion-option-button>
+                <ion-option-button class="button-calm ion-edit" ng-click="showPopup()">
+                </ion-option-button>            
+               
               </ion-item>
             </div>
 
@@ -45,6 +43,7 @@
         </div>
       </div>
     </div>
+    <p class="howto">Swipe to the left to edit/delete items!</p>
   </ion-content>
 </ion-view>
 

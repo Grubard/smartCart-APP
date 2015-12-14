@@ -71,14 +71,14 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 }
 
 #pantry {
-  margin-bottom: 3em;
+  margin-bottom: 5em;
 }
 
 .padding {
   padding: 0;
 }
 .home {
-  margin-bottom: 3em;
+  padding-bottom: 3.2em;
 }
 
 .bar.bar-footer {
@@ -239,5 +239,16 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   height: 100%;
   width: 100%;
 
+}
+
+.listBar {
+  margin-top: -1.5em;
+  
+  span {
+    margin-left: .5em;
+  }
+}
+.ion-ios-arrow-back {
+  font-size: 2.1em;
 }
 
