@@ -288,3 +288,46 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
     color: #6D3177;
   }
 }
+
+.land2 {
+  text-align: center;
+  img {
+    width: 55%;
+  }
+  h2 {
+    color: white;
+    padding: .5em;
+  }
+  h6 {
+    color: white;
+    background-color: inherit;
+    margin-right: 2.5em;
+    margin-top: 3em;
+    font-size: .85em;
+  }
+  h4 {
+    color: #6D3177;
+    margin-top: 2em;
+  }
+  hr {
+    width: 85%;
+  }
+  .step-one {
+    color: #6D3177;
+    margin-top: 0em;
+    margin-bottom: -1em;
+    margin-right: 1.8em
+  }
+  .step-two {
+    color: #D61202;
+    margin-top: 0em;
+    margin-bottom: -1em;
+    margin-right: 1.8em
+  }
+  .step-three {
+    color: #FF7700;
+    margin-top: 0em;
+    margin-bottom: -1em;
+    margin-right: 1.8em
+  }
+}

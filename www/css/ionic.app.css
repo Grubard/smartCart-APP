@@ -11391,3 +11391,37 @@ a.button {
     padding: 1em; }
   .land1 h4 {
     color: #6D3177; }
+
+.land2 {
+  text-align: center; }
+  .land2 img {
+    width: 55%; }
+  .land2 h2 {
+    color: white;
+    padding: .5em; }
+  .land2 h6 {
+    color: white;
+    background-color: inherit;
+    margin-right: 2.5em;
+    margin-top: 3em;
+    font-size: .85em; }
+  .land2 h4 {
+    color: #6D3177;
+    margin-top: 2em; }
+  .land2 hr {
+    width: 85%; }
+  .land2 .step-one {
+    color: #6D3177;
+    margin-top: 0em;
+    margin-bottom: -1em;
+    margin-right: 1.8em; }
+  .land2 .step-two {
+    color: #D61202;
+    margin-top: 0em;
+    margin-bottom: -1em;
+    margin-right: 1.8em; }
+  .land2 .step-three {
+    color: #FF7700;
+    margin-top: 0em;
+    margin-bottom: -1em;
+    margin-right: 1.8em; }
