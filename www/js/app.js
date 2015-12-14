@@ -298,16 +298,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     authenticate: true
     }
   })
-  .state('tab.add', {
-    url: '/adduser',
-    views: {
-      'tab': {
-        templateUrl: 'templates/adduser.html',
-        controller: 'AddUserController as vm',
-      },
-    authenticate: true
-    }
-  })
+  // .state('tab.add', {
+  //   url: '/adduser',
+  //   views: {
+  //     'tab': {
+  //       templateUrl: 'templates/adduser.html',
+  //       controller: 'AddUserController as vm',
+  //     },
+  //   authenticate: true
+  //   }
+  // })
   .state('tab.account', {
     url: '/settings',
     views: {

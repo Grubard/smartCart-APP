@@ -23,13 +23,13 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AddUserController', function($state, $http, $cookies) {
-  var vm = this;
-  vm.addUser= function(user){
+// .controller('AddUserController', function($state, $http, $cookies) {
+//   var vm = this;
+//   vm.addUser= function(user){
     
-    $state.go('tab.home');
-  };
-})
+//     $state.go('tab.home');
+//   };
+// })
 
 .controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService, $timeout, $rootScope, $ionicLoading) {
   $scope.show = function() {
@@ -449,7 +449,7 @@ angular.module('starter.controllers', [])
       expireDate.setDate(expireDate.getDate() + 7);
       var id = res.house.id;
       $cookies.put('house_id', id, {expires: expireDate}); 
-      $state.go('tab.add');
+      $state.go('tab.home');
     }).error( function (res) {
       var alertPopup = $ionicPopup.alert({
         title: 'SmartCart creation failed!',
@@ -549,46 +549,50 @@ angular.module('starter.controllers', [])
 
   function addItemsToPantry() {
     $scope.show($ionicLoading);
-    
-    vm.purchased.map(function(x){
-      
-      $http.post(url + '/edible', x, SERVER.CONFIG).success(function (res) {
-        ListService.removeFood(x.id).success(function () {
-          $scope.hide($ionicLoading);
-          var a;
-          console.log(a);
-          if (a === undefined) {
-            console.log(a);
-            $rootScope.$broadcast('addToPantry');
-            var alertPopup = $ionicPopup.alert({
-              title: 'Success!',
-              template: 'Item(s) successfully added to SMARTCART!'
-            });      
-            console.log(a);      
-            return !a;
-          }
-            console.log(a);
-        }).error(function(data) {
+    if (vm.purchased.length === 0) {
+        $scope.hide($ionicLoading);
+        return;
+      } else {
+        vm.purchased.map(function(x){
+          
+          $http.post(url + '/edible', x, SERVER.CONFIG).success(function (res) {
+            ListService.removeFood(x.id).success(function () {
+              $scope.hide($ionicLoading);
+              var a;
+              console.log(a);
+              if (a === undefined) {
+                console.log(a);
+                $rootScope.$broadcast('addToPantry');
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Success!',
+                  template: 'Item(s) successfully added to SMARTCART!'
+                });      
+                console.log(a);      
+                return !a;
+              }
+                console.log(a);
+            }).error(function(data) {
 
-          var alertPopup = $ionicPopup.alert({
-            title: 'Adding item(s) to pantry failed.',
-            template: 'Sorry for the inconvenience. Please try again.'
-          });
-        }).finally(function($ionicLoading) { 
-            $scope.hide($ionicLoading);  
-          });   
-      }).error(function(data) {
+              var alertPopup = $ionicPopup.alert({
+                title: 'Adding item(s) to pantry failed.',
+                template: 'Sorry for the inconvenience. Please try again.'
+              });
+            }).finally(function($ionicLoading) { 
+                $scope.hide($ionicLoading);  
+              });   
+          }).error(function(data) {
 
-          var alertPopup = $ionicPopup.alert({
-            title: 'Adding item(s) to pantry failed.',
-            template: 'Sorry for the inconvenience. Please try again.'
-          });
+              var alertPopup = $ionicPopup.alert({
+                title: 'Adding item(s) to pantry failed.',
+                template: 'Sorry for the inconvenience. Please try again.'
+              });
 
-      }).finally(function($ionicLoading) { 
-          $scope.hide($ionicLoading);  
-        });
-    });  
-    vm.purchased = [];     
+          }).finally(function($ionicLoading) { 
+              $scope.hide($ionicLoading);  
+            });
+        });  
+        vm.purchased = [];  
+      }   
   }
 
   $scope.showPopup = function() {

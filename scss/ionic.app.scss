@@ -255,6 +255,22 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   margin-left: 10%;
 }
 
+// .popup {
+//   width: 90%;
+// }
+.popup-body, .popup-head, .popup-buttons {
+  background-color: #26CF59;
+  // width: 20em;
+}
+.popup-body {
+  margin-top: -1px;
+}
+.popup-head {
+  h3, h5 {
+    color: white;    
+  }
+}
+
 .green {
   background-color: #26CF59;
   width: 100%;

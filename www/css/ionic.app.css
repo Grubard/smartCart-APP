@@ -11364,6 +11364,15 @@ a.button {
   margin-top: 10px;
   margin-left: 10%; }
 
+.popup-body, .popup-head, .popup-buttons {
+  background-color: #26CF59; }
+
+.popup-body {
+  margin-top: -1px; }
+
+.popup-head h3, .popup-head h5 {
+  color: white; }
+
 .green {
   background-color: #26CF59;
   width: 100%;
