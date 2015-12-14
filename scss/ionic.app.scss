@@ -255,3 +255,36 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   margin-left: 10%;
 }
 
+.green {
+  background-color: #26CF59;
+  width: 100%;
+  height: 100%;
+}
+
+.land-log {
+  text-decoration: none;
+  color: white;
+}
+.land-bar {
+  border-bottom: none;
+}
+.land1 {
+  width: 100%;
+  text-align: center;
+  img {
+    width: 90%;
+    margin-top: -1em;
+    margin-left: -.5em;
+  }
+  h2 {
+    color: white;
+    padding: .5em;
+  }
+  p {
+    color: white;
+    padding: 1em;
+  }
+  h4 {
+    color: #6D3177;
+  }
+}
