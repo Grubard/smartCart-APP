@@ -31,7 +31,17 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService, $timeout, $rootScope) {
+.controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService, $timeout, $rootScope, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
+
   var vm = this;
   vm.addNewItem = addNewItem;
 
@@ -127,7 +137,9 @@ angular.module('starter.controllers', [])
   };
 
   function addNewItem (food) {
+    $scope.show($ionicLoading); 
     ListService.addItem(food).success(function () {
+      $scope.hide($ionicLoading); 
       $rootScope.$broadcast('addToList');
       var alertPopup = $ionicPopup.alert({
           title: 'Success!',
@@ -138,14 +150,17 @@ angular.module('starter.controllers', [])
           title: 'Adding new item failed',
           template: 'Sorry for the inconvenience. Please try again.'
         });
+    }).finally(function($ionicLoading) { 
+      $scope.hide($ionicLoading);  
     });
     
 
   }
 
   $scope.delete = function(item) {
-    
+    $scope.show($ionicLoading);  
     PantryService.removeFood(item.id).success(function () {
+      $scope.hide($ionicLoading);  
       $rootScope.$broadcast('deletePantryItem');
       var alertPopup = $ionicPopup.alert({
           title: 'Success!',
@@ -157,6 +172,8 @@ angular.module('starter.controllers', [])
             title: 'Adding new item failed',
             template: 'Sorry for the inconvenience. Please try again.'
         });
+    }).finally(function($ionicLoading) { 
+      $scope.hide($ionicLoading);  
     });
     
   };
@@ -238,11 +255,13 @@ angular.module('starter.controllers', [])
       ]
     });
     myPopup.then(function(res) {
+      $scope.show($ionicLoading);
       if (res === undefined) {
+        $scope.hide($ionicLoading);
         return;
       } else {
       PantryService.addItem(res).success(function (res2)  {      
-        
+        $scope.hide($ionicLoading);
         $rootScope.$broadcast('addPantryItem');
         var alertPopup = $ionicPopup.alert({
           title: 'Success!',
@@ -253,6 +272,8 @@ angular.module('starter.controllers', [])
               title: 'Adding item failed',
               template: 'Sorry for the inconvenience. Please try again.'
           });
+        }).finally(function($ionicLoading) { 
+          $scope.hide($ionicLoading);  
         });
       }
     });
@@ -357,12 +378,13 @@ angular.module('starter.controllers', [])
     }); 
 
     myPopup.then(function(res) {
-      
+      $scope.show($ionicLoading);
       if (res === undefined) {
+        $scope.hide($ionicLoading);
         return;
       } else {
         PantryService.editFoodItem(res).success(function (res2) {
-
+          $scope.hide($ionicLoading);
           $rootScope.$broadcast('editPantryItem');
           var alertPopup = $ionicPopup.alert({
               title: 'Success!',
@@ -373,6 +395,8 @@ angular.module('starter.controllers', [])
               title: 'Editing item failed',
               template: 'Sorry for the inconvenience. Please try again.'
           });
+        }).finally(function($ionicLoading) { 
+          $scope.hide($ionicLoading);  
         });
         
       }
@@ -462,7 +486,17 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListController', function($scope, SERVER, $cookies, ListService, $state, $http, $ionicPopup, $timeout, $rootScope) {
+.controller('ListController', function($scope, SERVER, $cookies, ListService, $state, $http, $ionicPopup, $timeout, $rootScope, $ionicLoading) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
+
   var items= [];
 
   var vm = this;
@@ -496,8 +530,10 @@ angular.module('starter.controllers', [])
     })
   }
   function removeItem (object) {
+    $scope.show($ionicLoading);
      
     ListService.removeFood(object.id).success(function () {
+      $scope.hide($ionicLoading);
       $rootScope.$broadcast('deleteListItem');
       
     }).error(function(data) {
@@ -506,15 +542,19 @@ angular.module('starter.controllers', [])
             title: 'Deleting item(s) from grocery list failed!',
             template: 'Sorry for the inconvenience. Please try again.'
         });
+    }).finally(function($ionicLoading) { 
+      $scope.hide($ionicLoading);  
     });
   }
 
   function addItemsToPantry() {
+    $scope.show($ionicLoading);
     
     vm.purchased.map(function(x){
       
       $http.post(url + '/edible', x, SERVER.CONFIG).success(function (res) {
         ListService.removeFood(x.id).success(function () {
+          $scope.hide($ionicLoading);
           var a;
           console.log(a);
           if (a === undefined) {
@@ -534,8 +574,19 @@ angular.module('starter.controllers', [])
             title: 'Adding item(s) to pantry failed.',
             template: 'Sorry for the inconvenience. Please try again.'
           });
-        });   
-      });
+        }).finally(function($ionicLoading) { 
+            $scope.hide($ionicLoading);  
+          });   
+      }).error(function(data) {
+
+          var alertPopup = $ionicPopup.alert({
+            title: 'Adding item(s) to pantry failed.',
+            template: 'Sorry for the inconvenience. Please try again.'
+          });
+
+      }).finally(function($ionicLoading) { 
+          $scope.hide($ionicLoading);  
+        });
     });  
     vm.purchased = [];     
   }
@@ -617,10 +668,13 @@ angular.module('starter.controllers', [])
       ]
     });
     myPopup.then(function(res) {
+      $scope.show($ionicLoading);
       if (res === undefined) {
+        $scope.hide($ionicLoading);
         return;
       } else {
-      ListService.addItem(res).success(function (res2) {        
+      ListService.addItem(res).success(function (res2) {  
+        $scope.hide($ionicLoading);      
         $rootScope.$broadcast('addListItem');
         var alertPopup = $ionicPopup.alert({
           title: 'Success',
@@ -631,6 +685,8 @@ angular.module('starter.controllers', [])
             title: 'Adding item failed',
             template: 'Sorry for the inconvenience. Please try again.'
           });
+      }).finally(function($ionicLoading) { 
+          $scope.hide($ionicLoading);  
         });
       }
     });
@@ -734,11 +790,13 @@ angular.module('starter.controllers', [])
     }); 
 
     myPopup.then(function(res) {
-      
+      $scope.show($ionicLoading);
       if (res === undefined) {
+        $scope.hide($ionicLoading);
         return;
       } else {
         ListService.editFoodItem(res).success(function (res2) {
+          $scope.hide($ionicLoading);
 
           $rootScope.$broadcast('editListItem');
           var alertPopup = $ionicPopup.alert({
@@ -750,7 +808,9 @@ angular.module('starter.controllers', [])
               title: 'Editing item failed',
               template: 'Sorry for the inconvenience. Please try again.'
           });
-        });
+        }).finally(function($ionicLoading) { 
+            $scope.hide($ionicLoading);  
+          });
         
       }
     });

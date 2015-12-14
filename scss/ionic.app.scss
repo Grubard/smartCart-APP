@@ -1,9 +1,4 @@
 /*
-To customize the look and feel of Ionic, you can override the variables
-in ionic's _variables.scss file.
-
-For example, you might change some of the default colors:
-
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
@@ -15,41 +10,13 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-// The path for our ionicons font files, relative to the built CSS in www/css
+
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 
-// Include all of Ionic
+
 @import "www/lib/ionic/scss/ionic";
 @import "www/lib/fontawesome/scss/font-awesome";
-
-// @-webkit-keyframes slideIn {
-//   0% {
-//     left: -100%;
-//   }
-//   100% {
-//     left: 0;
-//   }
-// }
-
-// @-webkit-keyframes slideInSmooth {
-//   0% {
-//     -webkit-transform: translate3d(-100%,0,0);
-//   }
-//   100% {
-//     -webkit-transform: translate3d(0,0,0);
-//   }
-// }
-
-
-// .slide-in {
-//    -webkit-animation: slideInSmooth ease-in 1; 
-//   animation: slideInSmooth ease-in 1;
-//   -webkit-animation-fill-mode: forwards;
-//   animation-fill-mode: forwards;
-//   -webkit-animation-duration: 750ms;
-//   animation-duration: 750ms;
-// }
 
 .row {
   padding: 0;
@@ -97,7 +64,9 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
     }
 }
 
-.image, .image0, .image1, .image2, .image3, .image4, .image5, .image6, .image7, .image8, .image9, .image10, .image11, .image12, .image13, .image14 {
+.image, .image0, .image1, .image2, .image3,
+ .image4, .image5, .image6, .image7, .image8,
+  .image9, .image10, .image11, .image12, .image13, .image14 {
 
   position: relative;
   
@@ -204,11 +173,6 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   background-repeat: no-repeat;
 }
 
-// .goToList {
-//   background-color: white;
-  
-// }
-
 .cap {
   text-transform: uppercase;
   font-weight: 800;
@@ -227,9 +191,6 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   line-height: 1px;
 
 }
-// .item-left-editable {
-//   margin-top: 3em;
-// }
 
 .gList {
   margin-top: 3em;
@@ -277,5 +238,20 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 }
 .ion-ios-redo {
   font-size: 2.2em;
+}
+.login-text {
+  margin-top: -.4em;
+  font-size: 1.3em;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: #26CF59;
+  }
+}
+.btn {
+  width: 80%;
+  margin-top: 10px;
+  margin-left: 10%;
 }
 

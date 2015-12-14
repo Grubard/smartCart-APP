@@ -1,10 +1,5 @@
 @charset "UTF-8";
 /*
-To customize the look and feel of Ionic, you can override the variables
-in ionic's _variables.scss file.
-
-For example, you might change some of the default colors:
-
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
@@ -11200,7 +11195,9 @@ a.button {
     padding-left: 107%;
     padding-bottom: 4%; }
 
-.image, .image0, .image1, .image2, .image3, .image4, .image5, .image6, .image7, .image8, .image9, .image10, .image11, .image12, .image13, .image14 {
+.image, .image0, .image1, .image2, .image3,
+.image4, .image5, .image6, .image7, .image8,
+.image9, .image10, .image11, .image12, .image13, .image14 {
   position: relative; }
 
 .row p {
@@ -11353,3 +11350,16 @@ a.button {
 
 .ion-ios-redo {
   font-size: 2.2em; }
+
+.login-text {
+  margin-top: -.4em;
+  font-size: 1.3em;
+  text-align: center; }
+  .login-text a {
+    text-decoration: none;
+    color: #26CF59; }
+
+.btn {
+  width: 80%;
+  margin-top: 10px;
+  margin-left: 10%; }
