@@ -6,10 +6,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   }
 })
 .run(function($ionicPlatform, $rootScope, $cookies, $state, AuthService, $stateParams, $ionicNavBarDelegate, $location) {
+  
+
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
       cordova.plugins.Keyboard.disableScroll(true);
 
     }
@@ -32,6 +34,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     } else if (path.indexOf('signup') != -1) {
       $ionicNavBarDelegate.showBackButton(false);
     } else if (path.indexOf('login') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf('create') != -1) {
       $ionicNavBarDelegate.showBackButton(false);
     } else {
       $ionicNavBarDelegate.showBackButton(true);
