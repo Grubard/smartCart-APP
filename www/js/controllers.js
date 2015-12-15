@@ -554,6 +554,7 @@ angular.module('starter.controllers', [])
         return;
       } else {
         vm.purchased.map(function(x){
+          x.quantity = x.absolute; 
           
           $http.post(url + '/edible', x, SERVER.CONFIG).success(function (res) {
             ListService.removeFood(x.id).success(function () {
