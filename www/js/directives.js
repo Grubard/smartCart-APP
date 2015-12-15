@@ -52,6 +52,7 @@ angular.module('starter.directives', [])
           $cookies.remove('auth_token');
           $cookies.remove('username');
           $cookies.remove('house_id');
+  
           $state.go('tab.login');
         });
       }

@@ -53,6 +53,10 @@ angular.module('starter.controllers', [])
         PantryService.getPantryList().then(function (response) {
           $scope.hide($ionicLoading);
 
+          vm.pantryItems = response.data;
+          TransferService.transferItems(vm.pantryItems);
+          var items = response.data;
+          
           vm.necessity = [];
           vm.produce = [];
           vm.deli = [];
@@ -69,11 +73,25 @@ angular.module('starter.controllers', [])
           vm.household = [];
           vm.dairy = [];
           vm.other = [];
+          vm.necessityAmt = undefined;
+          vm.produceAmt = undefined;
+          vm.deliAmt = undefined;
+          vm.meatsAmt = undefined;
+          vm.spicesAmt = undefined;
+          vm.bakingAmt = undefined;
+          vm.breakfastAmt = undefined;
+          vm.snacksAmt = undefined;
+          vm.sweetsAmt = undefined;
+          vm.grainsAmt = undefined;
+          vm.frozenAmt = undefined;
+          vm.bevsAmt = undefined;
+          vm.hygieneAmt = undefined;
+          vm.householdAmt = undefined;
+          vm.dairyAmt = undefined;
+          vm.otherAmt = undefined;
 
-          vm.pantryItems = response.data;
-          TransferService.transferItems(vm.pantryItems);
-          var items = response.data;
-          items.forEach(function(item) {
+          items.forEach(function(item) {            
+
     
             if (item.necessity === true) {
               vm.necessity.push(item);
@@ -125,7 +143,12 @@ angular.module('starter.controllers', [])
               vm.otherAmt = vm.other.length;
             }
 
-          });        
+          });  
+          console.log('nece', vm.necessityAmt);
+            console.log('produce', vm.produceAmt);
+            console.log('meats', vm.meatsAmt);
+            console.log('spices', vm.spicesAmt);
+            console.log('dairy', vm.dairyAmt);      
         });
       });
     })    
@@ -182,21 +205,10 @@ angular.module('starter.controllers', [])
 
   $scope.showPopup = function() {
     $scope.food = {};
-    $scope.quantity= {
-        min:'0',
-        max:'20000',
-        value:'0'
-    }
-    $scope.preferred= {
-        min:'0',
-        max:'20000',
-        value:'0'
-    }
-
 
     var myPopup = $ionicPopup.show({
       template: `<form class="list">
-                 <label class="item item-input">
+                  <label class="item item-input">
                     <input type="text" placeholder="Item Name" ng-model="food.title">
                   </label>
                   <label class="item item-input item-select">
@@ -220,19 +232,45 @@ angular.module('starter.controllers', [])
                       <option>Other</option>
                     </select>
                   </label>
-                  <div class="item range range-positive">
-                    <span>On Hand: </span>
-                    <input type="range" name="volume" min="{{quantity.min}}" max="10" value="{{quantity.value}}" ng-model="quantity.value">                    
-                    <label>{{quantity.value}}</label>
-                  </div>
-                  <div class="item range range-positive">
-                    <span>Needed: </span>
-                    <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{preferred.value}}" ng-model="preferred.value">                    
-                    <label>{{preferred.value}}</label>
-                  </div>
                   <label class="item item-input">
                     <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
-                  </label>                 
+                  </label>     
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      On-Hand:
+                    </div>
+                    <select ng-model="food.quantity">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </label>
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      Needed: 
+                    </div>
+                    <select ng-model="food.preferred">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </label>                              
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',
@@ -244,8 +282,8 @@ angular.module('starter.controllers', [])
           text: '<b>Save</b>',
           type: 'button-calm',
           onTap: function(e) {
-            $scope.food.quantity = $scope.quantity.value;
-            $scope.food.preferred = $scope.preferred.value;            
+            // $scope.food.quantity = $scope.quantity.value;
+            // $scope.food.preferred = $scope.preferred.value;            
             if (!$scope.food.title || !$scope.food.category) {
               e.preventDefault();
             } else {
@@ -282,49 +320,37 @@ angular.module('starter.controllers', [])
   };
 
   $scope.editPopup = function(food) {
-    
     $scope.food = {
       title: food.title,
       category: food.category,
-      quantity: food.quantity,
-      preferred: food.preferred,
+      quantity: String(food.quantity),
+      preferred: String(food.preferred),
       necessity: food.necessity,
-      units: food.units,
-
+      units: food.units
     };
+
    
     $scope.newFood = {
       title: food.title,
       category: food.category,
-      quantity: food.quantity,
-      preferred: food.preferred,
+      quantity: String(food.quantity),
+      preferred: String(food.preferred),
       necessity: food.necessity,
       units: food.units,
       id: food.id
     };
 
-    $scope.quantity= {
-        min:'0',
-        max:'20000',
-        value: food.quantity
-    };
-    $scope.preferred= {
-        min:'0',
-        max:'20000',
-        value: food.preferred
-    };
-
     var myPopup = $ionicPopup.show({
         template: `<form class="list">
-                   <label class="item item-input">
+                    <label class="item item-input">
                       <input type="text" placeholder="Item Name" value="{{food.title}}" ng-model="newFood.title">
-                    </label>
+                    </label>                    
                     <label class="item item-input item-select">
                       <div class="input-label">
                         Category
                       </div>
                       <select ng-model="newFood.category" selected="{{food.category}}">
-                        <option selected>Produce</option>
+                        <option>Produce</option>
                         <option>Dairy</option>
                         <option>Deli</option>
                         <option>Meats</option>
@@ -340,19 +366,45 @@ angular.module('starter.controllers', [])
                         <option>Other</option>
                       </select>
                     </label>
-                    <div class="item range range-positive">
-                      <span>On Hand: </span>
-                      <input type="range" name="volume" min="{{quantity.min}}" max="10" value="{{food.quantity}}" ng-model="newFood.quantity">                    
-                      <label>{{newFood.quantity}}</label>
-                    </div>
-                    <div class="item range range-positive">
-                      <span>Needed: </span>
-                      <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
-                      <label>{{newFood.preferred}}</label>
-                    </div>
                     <label class="item item-input">
                       <input type="text" placeholder="Unit of Measurement" ng-model="newFood.units">
-                    </label>                  
+                    </label> 
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        On-Hand:
+                      </div>
+                      <select ng-model="newFood.quantity" selected="{{food.quantity}}">
+                        <option selected>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                      </select>
+                    </label>
+                    <label class="item item-input item-select">
+                      <div class="input-label">
+                        Needed: 
+                      </div>
+                      <select ng-model="newFood.preferred" selected="{{food.preferred}}">
+                        <option selected>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                      </select>
+                    </label>                                       
                     <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
         title: 'Edit Item',
@@ -427,7 +479,7 @@ angular.module('starter.controllers', [])
   vm.signUp = function(newUser){
 
     $scope.show($ionicLoading);
-    $http.post(url+'/signup/', newUser).success(function (res){
+      $http.post(url+'/signup/', newUser).success(function (res){
       $cookies.put('auth_token', res.user.access_token);
       $cookies.put('username', res.user.username);
       $state.go('tab.create');
@@ -473,6 +525,8 @@ angular.module('starter.controllers', [])
       expireDate.setDate(expireDate.getDate() + 7);
       $cookies.put('auth_token', res.user.access_token, {expires: expireDate});
       $cookies.put('username', res.user.username, {expires: expireDate});
+      SERVER.CONFIG.headers['Access-Token'] = res.user.access_token;
+
       $state.go('tab.home');
 
     }).error( function (res) {
@@ -601,16 +655,16 @@ angular.module('starter.controllers', [])
 
   $scope.showPopup = function() {
     $scope.food = {};
-    $scope.quantity = {
-      min:'0',
-      max:'20000',
-      value:'0'
-    }
-    $scope.preferred = {
-      min:'0',
-      max:'20000',
-      value:'0'
-    }
+    // $scope.quantity = {
+    //   min:'0',
+    //   max:'20000',
+    //   value:'0'
+    // }
+    // $scope.preferred = {
+    //   min:'0',
+    //   max:'20000',
+    //   value:'0'
+    // }
 
 
     var myPopup = $ionicPopup.show({
@@ -639,19 +693,45 @@ angular.module('starter.controllers', [])
                       <option>Other</option>
                     </select>
                   </label>
-                  <div class="item range range-positive">
-                    <span>On Hand: </span>
-                    <input type="range" name="volume" min="{{quantity.min}}" max="10" value="{{quantity.value}}" ng-model="quantity.value">                    
-                    <label>{{quantity.value}}</label>
-                  </div>
-                  <div class="item range range-positive">
-                    <span>Needed: </span>
-                    <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{preferred.value}}" ng-model="preferred.value">                    
-                    <label>{{preferred.value}}</label>
-                  </div> 
                   <label class="item item-input">
                     <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
-                  </label>                 
+                  </label>     
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      On-Hand:
+                    </div>
+                    <select ng-model="food.quantity">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </label>
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      Needed: 
+                    </div>
+                    <select ng-model="food.preferred">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </label>               
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',
@@ -663,11 +743,12 @@ angular.module('starter.controllers', [])
           text: '<b>Save</b>',
           type: 'button-calm',
           onTap: function(e) {
-            $scope.food.quantity = $scope.quantity.value;
-            $scope.food.preferred = $scope.preferred.value;            
+            // $scope.food.quantity = $scope.quantity.value;
+            // $scope.food.preferred = $scope.preferred.value;            
             if (!$scope.food.title || !$scope.food.category) {
               e.preventDefault();
             } else {
+              console.log($scope.food);
               return $scope.food;              
             }
             
@@ -704,8 +785,8 @@ angular.module('starter.controllers', [])
     $scope.food = {
       title: food.title,
       category: food.category,
-      quantity: food.quantity,
-      preferred: food.preferred,
+      quantity: String(food.quantity),
+      preferred: String(food.preferred),
       necessity: food.necessity,
       units: food.units,
 
@@ -714,8 +795,8 @@ angular.module('starter.controllers', [])
     $scope.newFood = {
       title: food.title,
       category: food.category,
-      quantity: food.quantity,
-      preferred: food.preferred,
+      quantity: String(food.quantity),
+      preferred: String(food.preferred),
       necessity: food.necessity,
       units: food.units,
       id: food.id
@@ -758,19 +839,45 @@ angular.module('starter.controllers', [])
                         <option>Other</option>
                       </select>
                     </label>
-                    <div class="item range range-positive">
-                      <span>On Hand: </span>
-                      <input type="range" name="volume" min="{{quantity.min}}" max="10" value="{{food.quantity}}" ng-model="newFood.quantity">                    
-                      <label>{{newFood.quantity}}</label>
-                    </div>
-                    <div class="item range range-positive">
-                      <span>Needed: </span>
-                      <input type="range" name="volume" min="{{preferred.min}}" max="10" value="{{food.preferred}}" ng-model="newFood.preferred">                    
-                      <label>{{newFood.preferred}}</label>
-                    </div>
                     <label class="item item-input">
-                      <input type="text" placeholder="Unit of Measurement" ng-model="newFood.units">
-                    </label>                  
+                    <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
+                  </label>     
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      On-Hand:
+                    </div>
+                    <select ng-model="newFood.quantity" selected="{{food.quantity}}">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </label>
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                      Needed: 
+                    </div>
+                    <select ng-model="newFood.preferred" selected="{{food.preferred}}">
+                      <option selected>0</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </label>                
                     <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
         title: 'Edit Item',
@@ -788,7 +895,7 @@ angular.module('starter.controllers', [])
               if (!$scope.newFood.title || !$scope.newFood.category) {
                 e.preventDefault();
               } else {
-                
+                console.log($scope.newFood);
                 return $scope.newFood;              
               }
               

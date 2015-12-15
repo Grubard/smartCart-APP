@@ -121,6 +121,7 @@ angular.module('starter.services', [])
   }
 
   function getGroceryList () {
+
     return $http.get(url + '/grocery' , SERVER.CONFIG);
   }
 
