@@ -1,9 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('LandingController', function($scope, $ionicHistory) {
-  $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
+.controller('LandingController', function($scope, $ionicSlideBoxDelegate) {
+  $scope.nextSlide = function() {
+    $ionicSlideBoxDelegate.next();
+  }
 })
 
 .controller('AlertController', function($scope, $ionicModal) {
@@ -47,9 +47,11 @@ angular.module('starter.controllers', [])
 
   pantryList();
   function pantryList() {
+    $scope.show($ionicLoading);
     angular.forEach(['$stateChangeSuccess', 'addPantryItem', 'deletePantryItem', 'editPantryItem'] , function(value) {
       $scope.$on(value, function (e, a) {
         PantryService.getPantryList().then(function (response) {
+          $scope.hide($ionicLoading);
 
           vm.necessity = [];
           vm.produce = [];
@@ -514,14 +516,15 @@ angular.module('starter.controllers', [])
   };
 
   groceryList();
-  function groceryList() {   
+  function groceryList() {  
+    $scope.show($ionicLoading); 
     vm.groceryListYay = [];
 
     angular.forEach(['$stateChangeSuccess', 'deleteListItem', 'addToPantry', 'addListItem', 'clearListItem', 'editListItem'], function(value) {
     
       $scope.$on(value, function (e, a) {
         ListService.getGroceryList().then( function (response) {
-          
+          $scope.hide($ionicLoading);         
 
           vm.groceryListYay = response.data;
         
