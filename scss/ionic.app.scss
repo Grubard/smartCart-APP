@@ -212,11 +212,21 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 .ion-ios-arrow-back {
   font-size: 2.1em;
 }
-.ion-ios-home {
+.ion-ios-home{
   font-size: 1.7em;
-  color: #00C0F5;
+  color: #26CF59;
   margin-right: .3em;
   
+}
+.ion-pizza {
+  font-size: 1.7em;
+  color: #D61202;
+  margin-right: .3em;
+}
+.ion-clipboard {
+  font-size: 1.7em;
+  color: #FF7700;
+  margin-right: .3em;
 }
 .ion-ios-people {
   font-size: 1.7em;
@@ -226,7 +236,7 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
 }
 .ion-email {
   font-size: 1.7em;
-  color: #00C0F5;
+  color: #6D3177;
   margin-right: .3em;
   
 }
@@ -255,19 +265,28 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   margin-left: 10%;
 }
 
-// .popup {
-//   width: 90%;
-// }
+.popup {
+  border: 1px solid white;
+  border-radius: 1em;
+  .button {
+    background-color: #00C0F5;
+    border: 1px solid darken(#00C0F5, 10%);
+  }
+}
 .popup-body, .popup-head, .popup-buttons {
   background-color: #26CF59;
   // width: 20em;
 }
 .popup-body {
   margin-top: -1px;
+  color: white;
+  text-align: center;
+  
 }
 .popup-head {
   h3, h5 {
-    color: white;    
+    color: white; 
+    font-weight: 800;   
   }
 }
 
@@ -381,8 +400,33 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
   }
 }
 .another {
+  font-size: 1.5em;
   white-space: normal;
+  padding: 5% 10%;
+  font-style: italic;
+  color: #6D3177;
+
+
 }
 .single {
   text-align: center;
+  h4 {
+    font-size: 2em;
+  }
+}
+
+.recipeBar {
+  button, a {
+    width: 50%;
+  }
+}
+
+.head {
+  font-size: 1.2em;
+  color: #26CF59;
+}
+
+.checkbox input:checked:before {
+  background: #00C0F5;
+  border-color: #00C0F5;
 }

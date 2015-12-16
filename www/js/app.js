@@ -22,6 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
     var path = $location.path();
+    console.log(path);
     
     if (path.indexOf('list') != -1) {
       $ionicNavBarDelegate.showBackButton(false);
@@ -39,6 +40,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       $ionicNavBarDelegate.showBackButton(false);
     } else if (path.indexOf('recipe') != -1) {
       $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf() != -1) {
+      $ionicNavBarDelegate.showBackButton(true);
     } else {
       $ionicNavBarDelegate.showBackButton(true);
     }
@@ -90,7 +93,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
   .state('tab.single', {
-    url: '/recipe/:id',
+    url: '/single/:id',
     views: {
       'tab': {
         templateUrl: 'templates/single.html',

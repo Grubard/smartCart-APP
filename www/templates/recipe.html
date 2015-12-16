@@ -1,4 +1,4 @@
-<ion-view view-title="Single">
+<ion-view view-title="Recipe List">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
@@ -15,7 +15,7 @@
     </form>
 
     <div class="list">
-      <a class="item item-thumbnail-left" ng-repeat="object in vm.recipes" href="#/tab/recipe/{{object.id}}">
+      <a class="item item-thumbnail-left" ng-repeat="object in vm.recipes" href="#/tab/single/{{object.id}}">
         <img ng-src="{{object.source_image_url}}">
         <span>{{object.name}}</span>
       </a>

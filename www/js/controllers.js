@@ -1,19 +1,50 @@
 angular.module('starter.controllers', [])
 
-.controller('RecipeController', function($scope, SERVER, $cookies, $http) {
+.controller('RecipeController', function($scope, SERVER, $cookies, $http, $ionicLoading, $ionicPopup) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
+
   var vm = this;
   var url = SERVER.URL;
   var token = $cookies.get('auth_token');
   SERVER.CONFIG.headers['Access-Token'] = token;
 
   vm.searchForRecipe = function (recipe) {
-    $http.post(url + '/recipe', recipe, SERVER.CONFIG).then(function (res) {
-      vm.recipes = res.data.recipes;
+    $scope.show($ionicLoading);
+    $http.post(url + '/recipe', recipe, SERVER.CONFIG).success(function (res) {
+      $scope.hide($ionicLoading);
+      vm.recipes = res.recipes;
+    }).error(function(data) {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Getting recipes failed',
+          template: 'Sorry for the inconvenience. Please try again.'
+        });
+    }).finally(function($ionicLoading) { 
+      $scope.hide($ionicLoading);  
     });
   };
 })
 
-.controller('SingleController', function($http, SERVER, $cookies, $stateParams) {
+.controller('SingleController', function($http, SERVER, $cookies, $stateParams, $ionicLoading, $scope, $ionicPopup) {
+  $scope.show = function() {
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+  };
+
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
+
+  
+
   var id = $stateParams.id;
   var vm = this;
   var url = SERVER.URL;
@@ -21,16 +52,17 @@ angular.module('starter.controllers', [])
   SERVER.CONFIG.headers['Access-Token'] = token;
 
   var toBuy = [];
-  $http.get(url+'/recipe/'+ id, SERVER.CONFIG).then((res)=>{
-    console.log('hi', res);
+  $scope.show($ionicLoading);
+  $http.get(url+'/recipe/'+ id, SERVER.CONFIG).then(function (res) {
+    $scope.hide($ionicLoading);
+
     vm.title = res.data.name;
     vm.image = res.data.source_image_url;
     vm.recipeSource = res.data.source_url;
     vm.id = res.data.id;
     vm.ingredients = res.data.ingredients;
 
-    vm.ingredients.forEach(function(x){
-      console.log(x);
+    vm.ingredients.forEach(function(x) {
       
       var food = {
         title: x.name,
@@ -45,34 +77,51 @@ angular.module('starter.controllers', [])
     });
   });
 
+  $scope.browser = function() {
+    window.open(vm.recipeSource,'_system','location=yes'); 
+  };
+
   var pantry = [];
   var grocery = [];
 
-  $http.get(url+ '/edible', SERVER.CONFIG).then(function (res) {
+  $http.get(url + '/edible', SERVER.CONFIG).then(function (res) {
     res.data.forEach(function(x){
         pantry.push(x.title);
       });
   });
 
-  $http.get(url+ '/grocery', SERVER.CONFIG).then(function (res) {
+  $http.get(url + '/grocery', SERVER.CONFIG).then(function (res) {
     res.data.forEach(function(y){
         grocery.push(y.title);
       });
   });
 
-  vm.addThisRecipe= function(){
-    console.log(grocery);
-    console.log(pantry);
+  vm.addThisRecipe = function(){
+    $scope.show($ionicLoading);
     
-    toBuy.forEach(function(x){
+
+    toBuy.forEach(function(x) {
+
       var yay = $.inArray(x.title, pantry);
       var otherYay = $.inArray(x.title, grocery); 
       
 
       if(yay === -1 && otherYay === -1){
-        $http.post(url+'/grocery', x, SERVER.CONFIG).success(function (res) {
-          console.log('what we posted: ', res);
-        
+        $http.post(url + '/grocery', x, SERVER.CONFIG).success(function (res) {
+          $scope.hide($ionicLoading);
+
+          var alertPopup = $ionicPopup.alert({
+            title: 'Success!',
+            template: 'Sent items to grocery list!'
+          });      
+
+        }).error(function(data) {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Sending ingredients failed',
+            template: 'Sorry for the inconvenience. Please try again.'
+          });
+        }).finally(function($ionicLoading) { 
+          $scope.hide($ionicLoading);  
         });
         
       }

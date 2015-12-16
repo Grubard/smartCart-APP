@@ -1,39 +1,31 @@
 
-<ion-view view-title="Recipes">
+<ion-view view-title="Ingredients">
   <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <!-- <button menu-toggle="left" class="button button-icon icon ion-navicon"></button> -->
   </ion-nav-buttons>
 
   <ion-content has-header="true" padding="true">
 
-    <div class="list card single">
-      <div class="item item-avatar">
-        <img ng-src="{{vm.image}}"></span>
-        <p class="another">{{vm.title}}</p>        
-      </div>
-
+    <h2 class="another">{{vm.title}}</h2>        
+    <div class="list single">
       <div class="item">
-        <h4 class="col">Ingredient List</h4>
 
         <div class="row">
-          <div class="col">Name</div>
-          <div class="col">Amount/Unit</div>
+          <div class="col head">Name</div>
+          <div class="col head">Amount/Unit</div>
         </div>
-        <hr>
+       
         <div ng-repeat="item in vm.ingredients" class="row">
           <div class="col">{{item.name}}</div>
           <div class="col">{{item.amount| limitTo: 4}} {{item.unit}}</div>
         </div> 
-      </div>         
-
-        
-      <div class="item item-body row">
-        <a href="#"class="button button-calm col" ng-click="vm.addThisRecipe()">Add This Recipe!</a>
-        <a href="{{vm.recipeSource}}" class="button button-balanced col">View Recipe Instructions</a>
-      </div>
-
+      </div>       
     </div>
 
 
   </ion-content>
+  <div class="bar bar-footer recipeBar">
+    <button class="button button-calm" ng-click="vm.addThisRecipe()">Add This Recipe!</button>
+    <a class="button button-balanced" ng-click="browser()">View Recipe Instructions</a>
+  </div>
 </ion-view>

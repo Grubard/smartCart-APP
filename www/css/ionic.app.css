@@ -11329,7 +11329,17 @@ a.button {
 
 .ion-ios-home {
   font-size: 1.7em;
-  color: #00C0F5;
+  color: #26CF59;
+  margin-right: .3em; }
+
+.ion-pizza {
+  font-size: 1.7em;
+  color: #D61202;
+  margin-right: .3em; }
+
+.ion-clipboard {
+  font-size: 1.7em;
+  color: #FF7700;
   margin-right: .3em; }
 
 .ion-ios-people {
@@ -11339,7 +11349,7 @@ a.button {
 
 .ion-email {
   font-size: 1.7em;
-  color: #00C0F5;
+  color: #6D3177;
   margin-right: .3em; }
 
 .ion-edit {
@@ -11364,14 +11374,24 @@ a.button {
   margin-top: 10px;
   margin-left: 10%; }
 
+.popup {
+  border: 1px solid white;
+  border-radius: 1em; }
+  .popup .button {
+    background-color: #00C0F5;
+    border: 1px solid #0098c2; }
+
 .popup-body, .popup-head, .popup-buttons {
   background-color: #26CF59; }
 
 .popup-body {
-  margin-top: -1px; }
+  margin-top: -1px;
+  color: white;
+  text-align: center; }
 
 .popup-head h3, .popup-head h5 {
-  color: white; }
+  color: white;
+  font-weight: 800; }
 
 .green {
   background-color: #26CF59;
@@ -11459,7 +11479,24 @@ a.button {
   font-size: 1em; }
 
 .another {
-  white-space: normal; }
+  font-size: 1.5em;
+  white-space: normal;
+  padding: 5% 10%;
+  font-style: italic;
+  color: #6D3177; }
 
 .single {
   text-align: center; }
+  .single h4 {
+    font-size: 2em; }
+
+.recipeBar button, .recipeBar a {
+  width: 50%; }
+
+.head {
+  font-size: 1.2em;
+  color: #26CF59; }
+
+.checkbox input:checked:before {
+  background: #00C0F5;
+  border-color: #00C0F5; }
