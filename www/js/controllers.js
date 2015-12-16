@@ -697,9 +697,11 @@ angular.module('starter.controllers', [])
                   template: 'Sorry for the inconvenience. Please try again.'
                 });
                 done = true;
+                $rootScope.$broadcast('addToPantry');
               }
             }).finally(function($ionicLoading) { 
-                $scope.hide($ionicLoading);  
+                $scope.hide($ionicLoading); 
+                $rootScope.$broadcast('addToPantry'); 
               });   
           }).error(function(data) {
               if (!done) {
@@ -708,10 +710,12 @@ angular.module('starter.controllers', [])
                   template: 'Sorry for the inconvenience. Please try again.'
                 });
                 done = true;
+                $rootScope.$broadcast('addToPantry');
               }
 
           }).finally(function($ionicLoading) { 
               $scope.hide($ionicLoading);  
+              $rootScope.$broadcast('addToPantry');
             });
         });  
         vm.purchased = [];  
