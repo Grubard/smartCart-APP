@@ -10,7 +10,7 @@
       <ion-list>
         <ion-item ng-repeat="item in vm.other" item="item" class="cap">
         <h2>
-          {{ item.title }} <span class="item-note">{{item.quantity}} of {{item.preferred}}</span></h2>
+          {{ item.title }} <span class="item-note">{{item.quantity | limitTo: 4}} of {{item.preferred | limitTo: 4}}</span></h2>
           <ion-option-button class="button-assertive ion-trash-a" ng-click="delete(item)">
           </ion-option-button>
           <ion-option-button class="button-calm ion-edit" ng-click="editPopup(item)">

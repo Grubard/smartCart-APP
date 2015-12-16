@@ -69,7 +69,7 @@ angular.module('starter.controllers', [])
         quantity: x.amount,
         units: x.unit,
         category: 'other',
-        preferred: false,
+        preferred: x.amount,
         absolute: x.amount
       };
       toBuy.push(food);
@@ -99,21 +99,22 @@ angular.module('starter.controllers', [])
   vm.addThisRecipe = function(){
     $scope.show($ionicLoading);
     
-
+    var done = false;
     toBuy.forEach(function(x) {
 
       var yay = $.inArray(x.title, pantry);
-      var otherYay = $.inArray(x.title, grocery); 
-      
+      var otherYay = $.inArray(x.title, grocery);       
 
       if(yay === -1 && otherYay === -1){
         $http.post(url + '/grocery', x, SERVER.CONFIG).success(function (res) {
           $scope.hide($ionicLoading);
-
-          var alertPopup = $ionicPopup.alert({
-            title: 'Success!',
-            template: 'Sent items to grocery list!'
-          });      
+          if (!done) {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Success!',
+              template: 'Sent items to grocery list!'
+            });      
+            done = true;
+          }
 
         }).error(function(data) {
           var alertPopup = $ionicPopup.alert({
@@ -670,40 +671,44 @@ angular.module('starter.controllers', [])
         $scope.hide($ionicLoading);
         return;
       } else {
+        var done = false;
         vm.purchased.map(function(x){
           x.quantity = x.absolute; 
           
           $http.post(url + '/edible', x, SERVER.CONFIG).success(function (res) {
             ListService.removeFood(x.id).success(function () {
               $scope.hide($ionicLoading);
-              var a;
-              console.log(a);
-              if (a === undefined) {
-                console.log(a);
-                $rootScope.$broadcast('addToPantry');
+
+              if (!done) {
+      
                 var alertPopup = $ionicPopup.alert({
                   title: 'Success!',
                   template: 'Item(s) successfully added to SMARTCART!'
                 });      
-                console.log(a);      
-                return !a;
+                done = true;
+                $rootScope.$broadcast('addToPantry');
               }
-                console.log(a);
+      
             }).error(function(data) {
+              if (!done) {
 
-              var alertPopup = $ionicPopup.alert({
-                title: 'Adding item(s) to pantry failed.',
-                template: 'Sorry for the inconvenience. Please try again.'
-              });
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Removing item(s) to grocery failed.',
+                  template: 'Sorry for the inconvenience. Please try again.'
+                });
+                done = true;
+              }
             }).finally(function($ionicLoading) { 
                 $scope.hide($ionicLoading);  
               });   
           }).error(function(data) {
-
-              var alertPopup = $ionicPopup.alert({
-                title: 'Adding item(s) to pantry failed.',
-                template: 'Sorry for the inconvenience. Please try again.'
-              });
+              if (!done) {
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Adding item(s) to pantry failed.',
+                  template: 'Sorry for the inconvenience. Please try again.'
+                });
+                done = true;
+              }
 
           }).finally(function($ionicLoading) { 
               $scope.hide($ionicLoading);  

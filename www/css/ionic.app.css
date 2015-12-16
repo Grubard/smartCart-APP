@@ -11303,7 +11303,8 @@ a.button {
 .howto {
   font-style: italic;
   font-size: 1em;
-  text-align: center; }
+  text-align: center;
+  margin-top: 1.7em; }
 
 .button.button.button-block.goBtn {
   border: 3px solid #00C0F5;

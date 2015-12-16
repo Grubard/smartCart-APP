@@ -96,7 +96,6 @@ angular.module('starter.directives', [])
       }
     };
   })
-  /// Will be deleted after for each funciton is in
   .directive('home', function() {
     return {
 
@@ -113,7 +112,6 @@ angular.module('starter.directives', [])
       }
     };
   })
-    /// Will be deleted after for each funciton is in
   .directive('butch', function() {
     return {
 
