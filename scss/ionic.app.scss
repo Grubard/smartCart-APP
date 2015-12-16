@@ -272,6 +272,9 @@ $fa-font-path:  "../lib/font-awesome/scss/fonts" !default;
     background-color: #00C0F5;
     border: 1px solid darken(#00C0F5, 10%);
   }
+  .button-default {
+    background-color: #f8f8f8;
+  }
 }
 .popup-body, .popup-head, .popup-buttons {
   background-color: #26CF59;

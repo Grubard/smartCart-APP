@@ -11380,6 +11380,8 @@ a.button {
   .popup .button {
     background-color: #00C0F5;
     border: 1px solid #0098c2; }
+  .popup .button-default {
+    background-color: #f8f8f8; }
 
 .popup-body, .popup-head, .popup-buttons {
   background-color: #26CF59; }
