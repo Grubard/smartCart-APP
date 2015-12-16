@@ -37,6 +37,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       $ionicNavBarDelegate.showBackButton(false);
     } else if (path.indexOf('create') != -1) {
       $ionicNavBarDelegate.showBackButton(false);
+    } else if (path.indexOf('recipe') != -1) {
+      $ionicNavBarDelegate.showBackButton(false);
     } else {
       $ionicNavBarDelegate.showBackButton(true);
     }
@@ -73,6 +75,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'tab': {
         templateUrl: 'templates/home.html',
         controller: 'PantryController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.recipe', {
+    url: '/recipe',
+    views: {
+      'tab': {
+        templateUrl: 'templates/recipe.html',
+        controller: 'RecipeController as vm'
+      },
+    authenticate: true
+    }
+  })
+  .state('tab.single', {
+    url: '/recipe/:id',
+    views: {
+      'tab': {
+        templateUrl: 'templates/single.html',
+        controller: 'SingleController as vm'
       },
     authenticate: true
     }

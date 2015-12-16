@@ -11453,3 +11453,13 @@ a.button {
   .land3 a {
     width: 50%;
     font-size: 1.7em; }
+
+.item-thumbnail-left span {
+  white-space: normal;
+  font-size: 1em; }
+
+.another {
+  white-space: normal; }
+
+.single {
+  text-align: center; }

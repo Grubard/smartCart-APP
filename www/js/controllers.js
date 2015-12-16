@@ -1,5 +1,89 @@
 angular.module('starter.controllers', [])
 
+.controller('RecipeController', function($scope, SERVER, $cookies, $http) {
+  var vm = this;
+  var url = SERVER.URL;
+  var token = $cookies.get('auth_token');
+  SERVER.CONFIG.headers['Access-Token'] = token;
+
+  vm.searchForRecipe = function (recipe) {
+    $http.post(url + '/recipe', recipe, SERVER.CONFIG).then(function (res) {
+      vm.recipes = res.data.recipes;
+    });
+  };
+})
+
+.controller('SingleController', function($http, SERVER, $cookies, $stateParams) {
+  var id = $stateParams.id;
+  var vm = this;
+  var url = SERVER.URL;
+  var token = $cookies.get('auth_token');
+  SERVER.CONFIG.headers['Access-Token'] = token;
+
+  var toBuy = [];
+  $http.get(url+'/recipe/'+ id, SERVER.CONFIG).then((res)=>{
+    console.log('hi', res);
+    vm.title = res.data.name;
+    vm.image = res.data.source_image_url;
+    vm.recipeSource = res.data.source_url;
+    vm.id = res.data.id;
+    vm.ingredients = res.data.ingredients;
+
+    vm.ingredients.forEach(function(x){
+      console.log(x);
+      
+      var food = {
+        title: x.name,
+        quantity: x.amount,
+        units: x.unit,
+        category: 'other',
+        preferred: false,
+        absolute: x.amount
+      };
+      toBuy.push(food);
+      
+    });
+  });
+
+  var pantry = [];
+  var grocery = [];
+
+  $http.get(url+ '/edible', SERVER.CONFIG).then(function (res) {
+    res.data.forEach(function(x){
+        pantry.push(x.title);
+      });
+  });
+
+  $http.get(url+ '/grocery', SERVER.CONFIG).then(function (res) {
+    res.data.forEach(function(y){
+        grocery.push(y.title);
+      });
+  });
+
+  vm.addThisRecipe= function(){
+    console.log(grocery);
+    console.log(pantry);
+    
+    toBuy.forEach(function(x){
+      var yay = $.inArray(x.title, pantry);
+      var otherYay = $.inArray(x.title, grocery); 
+      
+
+      if(yay === -1 && otherYay === -1){
+        $http.post(url+'/grocery', x, SERVER.CONFIG).success(function (res) {
+          console.log('what we posted: ', res);
+        
+        });
+        
+      }
+    });  
+      
+    
+      
+  };
+
+})
+
 .controller('LandingController', function($scope, $ionicSlideBoxDelegate) {
   $scope.nextSlide = function() {
     $ionicSlideBoxDelegate.next();
@@ -22,14 +106,6 @@ angular.module('starter.controllers', [])
     $ionicSideMenuDelegate.toggleLeft();
   };
 })
-
-// .controller('AddUserController', function($state, $http, $cookies) {
-//   var vm = this;
-//   vm.addUser= function(user){
-    
-//     $state.go('tab.home');
-//   };
-// })
 
 .controller('PantryController', function($cookies, ListService, PantryService, $scope, $state, $ionicPopup, TransferService, $timeout, $rootScope, $ionicLoading) {
   $scope.show = function() {
@@ -143,12 +219,7 @@ angular.module('starter.controllers', [])
               vm.otherAmt = vm.other.length;
             }
 
-          });  
-          console.log('nece', vm.necessityAmt);
-            console.log('produce', vm.produceAmt);
-            console.log('meats', vm.meatsAmt);
-            console.log('spices', vm.spicesAmt);
-            console.log('dairy', vm.dairyAmt);      
+          });     
         });
       });
     })    
@@ -234,43 +305,13 @@ angular.module('starter.controllers', [])
                   </label>
                   <label class="item item-input">
                     <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
-                  </label>     
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      On-Hand:
-                    </div>
-                    <select ng-model="food.quantity">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
+                  </label>  
+                  <label class="item item-input">
+                    <input type="text" placeholder="On Hand" ng-model="food.quantity">
                   </label>
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      Needed: 
-                    </div>
-                    <select ng-model="food.preferred">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
-                  </label>                              
+                  <label class="item item-input">
+                    <input type="text" placeholder="Needed" ng-model="food.preferred">
+                  </label>                            
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',
@@ -369,42 +410,12 @@ angular.module('starter.controllers', [])
                     <label class="item item-input">
                       <input type="text" placeholder="Unit of Measurement" ng-model="newFood.units">
                     </label> 
-                    <label class="item item-input item-select">
-                      <div class="input-label">
-                        On-Hand:
-                      </div>
-                      <select ng-model="newFood.quantity" selected="{{food.quantity}}">
-                        <option selected>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                      </select>
+                    <label class="item item-input">
+                      <input type="text" placeholder="On Hand" ng-model="newFood.quantity" value="{{food.quantity}}">
                     </label>
-                    <label class="item item-input item-select">
-                      <div class="input-label">
-                        Needed: 
-                      </div>
-                      <select ng-model="newFood.preferred" selected="{{food.preferred}}">
-                        <option selected>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                      </select>
-                    </label>                                       
+                    <label class="item item-input">
+                      <input type="text" placeholder="Needed" ng-model="newFood.preferred" value="{{food.preferred}}">
+                    </label>                               
                     <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,
         title: 'Edit Item',
@@ -696,42 +707,12 @@ angular.module('starter.controllers', [])
                   <label class="item item-input">
                     <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
                   </label>     
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      On-Hand:
-                    </div>
-                    <select ng-model="food.quantity">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
+                  <label class="item item-input">
+                    <input type="text" placeholder="On Hand" ng-model="food.quantity">
                   </label>
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      Needed: 
-                    </div>
-                    <select ng-model="food.preferred">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
-                  </label>               
+                  <label class="item item-input">
+                    <input type="text" placeholder="Needed" ng-model="food.preferred">
+                  </label>                 
                   <ion-toggle ng-model="food.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                 </form>`,
       title: 'Add a new Item',
@@ -842,41 +823,11 @@ angular.module('starter.controllers', [])
                     <label class="item item-input">
                     <input type="text" placeholder="Unit of Measurement" ng-model="food.units">
                   </label>     
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      On-Hand:
-                    </div>
-                    <select ng-model="newFood.quantity" selected="{{food.quantity}}">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
+                  <label class="item item-input">
+                    <input type="text" placeholder="On Hand" ng-model="newFood.quantity" value="{{food.quantity}}">
                   </label>
-                  <label class="item item-input item-select">
-                    <div class="input-label">
-                      Needed: 
-                    </div>
-                    <select ng-model="newFood.preferred" selected="{{food.preferred}}">
-                      <option selected>0</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
+                  <label class="item item-input">
+                    <input type="text" placeholder="Needed" ng-model="newFood.preferred" value="{{food.preferred}}">
                   </label>                
                     <ion-toggle value="newFood.necessity" ng-model="newFood.necessity" toggle-class="toggle-calm">Necessity?</ion-toggle>
                   </form>`,

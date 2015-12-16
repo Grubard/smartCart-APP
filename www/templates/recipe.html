@@ -1,0 +1,25 @@
+<ion-view view-title="Single">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content has-header="true" padding="true">
+
+    <form class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Search Recipes" ng-model="recipe.query">
+      </label>
+      <button class="button button-small button-calm" ng-click="vm.searchForRecipe(recipe)">
+        Search
+      </button>
+    </form>
+
+    <div class="list">
+      <a class="item item-thumbnail-left" ng-repeat="object in vm.recipes" href="#/tab/recipe/{{object.id}}">
+        <img ng-src="{{object.source_image_url}}">
+        <span>{{object.name}}</span>
+      </a>
+    </div>
+
+  </ion-content>
+</ion-view>
